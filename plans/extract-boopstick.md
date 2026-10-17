@@ -23,6 +23,8 @@ Use a clean file-based import, never a mirror, fork or history push from the sou
 
 [Proposed Boopstick behavior](../specs/boopstick.md): one pure comparator, ordinary selectable tests with complete CI accounting, honest RNTL/browser/native evidence boundaries, optional integration dependencies and a standalone authoring skill.
 
+This amendment operationalizes [the evidence-pipeline improvement intent](../specs/boopstick.md#improvement-intent-preserve-structure-without-manufacturing-certainty): independently authored relationships, qualified readiness, non-substitutable evidence, lossless justified coordinate conversion and one canonical verdict presentation. It does not change the pure core or reduce the three-context qualification target. It adds no implementation permission; all `awaits` prerequisites remain in force.
+
 ## Approach
 
 ### A. Resolve readiness and freeze the move
@@ -58,6 +60,31 @@ After B/C and approval of each collection scope, qualify the native and browser 
 
 Use the same high-level obligation across the two specimens only where semantics truly match. Do not force identical locators or manufacture a universal test DSL. Initial Android qualification does not imply iOS/physical-device support; adding those needs explicit later scope and execution evidence.
 
+#### D1. First bounded evidence-pipeline discriminator
+
+Within the already-scoped Android path, use one original neutral card-like RN specimen after collection approval. Author a small request from an approved requirement/reference before observing the candidate: a gap, alignment, containment and minimum-size obligation with explicit scenario bindings. Use RN layout observations for layout claims; keep ADB accessibility or screenshot evidence separately identified. This is the first qualification experiment, not a replacement for the RNTL and browser paths.
+
+Use the existing runner to establish relevant resource/layout/transition readiness, then collect a coherent capture. Preserve failures to settle as collection limitations or setup failures rather than accepting a last-known sample. Exercise readiness success and exhaustion under controlled conditions; do not add retries or a generic stabilization service.
+
+The following are proposed discriminators, not executed results or a new test DSL:
+
+| Case | Expected distinction |
+|---|---|
+| Correct layout | The declared geometric obligations pass with qualified evidence. |
+| Legitimate long-title wrapping | Relationship obligations still pass when the approved variant permits reflow; incidental absolute coordinates are not substituted as requirements. |
+| Wrong gap, then repair | The gap fails with expected/actual/deviation, and passes only after a fresh correctly bound capture of the repair. |
+| Fractional undersizing | An admitted measured 43.5 against an independently chosen minimum 44 and tolerance 0 fails; no rounding or blanket tolerance repairs it. Values are illustrative, in one declared unit. |
+| Missing or wrong-kind evidence | The affected obligation is unmeasured or the input is refused according to the accepted contract; no accessibility/screenshot substitution, manufactured zero or unqualified absence. |
+| Required readiness never established | Collection terminates within the chosen bound without a qualified pass for affected obligations; unchanged samples do not overrule the missing readiness condition. |
+| Displaced composition with a placement obligation | The independently justified placement check fails; origin conversion does not recenter away the shift. Overlapping outsiders do not gain logical scope membership. |
+| Fully covered action | Geometry may pass; a separately exercised visibility/actionability obligation must prevent whole-task acceptance. If that obligation cannot be measured, acceptance remains unsupported. |
+
+For the fractional case, first establish that the real provider can represent the distinguishing value. If it cannot, record that limitation and retain the exact numerical discriminator as a separately labelled synthetic contract check; do not claim native precision qualification from rounded measurements.
+
+Bind each outcome to the frozen request, candidate, scenario/environment and attempt. Reuse existing report fields and runner artifacts to show subjects, reference/source anchors where available, expected/measured values, deviation and evidence/refusal reasons. The report presentation must not recompute verdicts. Screenshots can support visual review, but cannot replace the named measurement provider.
+
+Before execution, review the neutral specimen, independently justified expectations/tolerances, readiness conditions and bounds, subject mapping, coordinate/unit conversion and separate occlusion check. The existing scope/source/rights gates still apply. If the accepted contract cannot express the necessary qualification, stop for an explicit amendment; do not silently extend it.
+
 ### E. Release, then cut over consumers without a compatibility layer
 
 1. Finalize licensing/provenance and document the actually tested runner/renderer/platform/version matrix. Unsupported combinations remain explicit. The full three-context target is not complete until C and both D paths pass; an earlier offline preview must be labelled narrowly and cannot close this plan.
@@ -78,6 +105,9 @@ All boxes below are **future acceptance criteria**, not results from publishing 
 - [ ] Full CI detects omitted/skipped/duplicate/expected-failing/unmeasured obligations, missing results and stale/wrong-identity evidence; local selection does not alter the required inventory.
 - [ ] Android emulator interaction → qualified fresh capture → named verdicts works for a valid state, real defect, repair and missing evidence, with correct semantics and clean teardown.
 - [ ] Real browser interaction → approved-provider capture → named verdicts works at two sizes, including fractional, missing and covered-element cases, with clean teardown and no native claim.
+- [ ] The bounded D1 matrix distinguishes legitimate reflow, a seeded gap defect and repair, fractional undersizing, wrong-kind/missing evidence, unsettled capture, displaced origin and the occlusion counterexample; synthetic checks and native qualification are reported separately.
+- [ ] Expectation provenance is independent of candidate measurements; readiness exhaustion cannot produce an affected qualified pass; coordinate conversion preserves precision, origin, scope and provider meaning without new implicit wire semantics.
+- [ ] Human diagnostics use the canonical report and existing runner artifacts, preserve all outcome/admission distinctions, and do not recompute verdicts or require private research material.
 - [ ] Fresh public onboarding requires no private checkout; published support claims match executed evidence. Runtime source and license provenance are inspectable.
 - [ ] Approved consumer cutover migrates all active callers and the relevant skill, removes obsolete maintained copies and passes the affected consumer checks; failures do not trigger a hidden fallback.
 

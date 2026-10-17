@@ -20,6 +20,52 @@ An **assertion** is one configured obligation. An **expectation request** declar
 
 Preserve `pass`, `fail` and `not_measured`, with invalid request/capture distinguished as admission errors. Evaluate the intact canonical request, then select an outcome by stable assertion ID. A sibling failure must not fail an otherwise passing case merely through aggregate report status. Admission failures or a missing/ambiguous outcome remain errors. Reuse immutable comparison results rather than repeating the same computation for each case.
 
+## Improvement intent: preserve structure without manufacturing certainty
+
+The design-to-code discussion motivates a verification pipeline, not another rendering engine. A design exporter translates one structured source into another representation; Boopstick must compare independently justified expectations with qualified observations of the actual application. Agreement between two values derived from the candidate is not verification.
+
+```text
+Approved requirement/reference -> justified request ----+
+                                                       |
+Actual app -> qualified collector -> bound capture -----+-> compare
+                                                            |
+                                                            v
+                                                   canonical report
+                                                            |
+                                                            v
+                                                  ordinary test output
+```
+
+These improvements refine authoring, collection qualification and presentation. Preserve the accepted pure evaluator and its request/capture/report contract; do not introduce a universal scene graph, new rule language or alternate verdict engine.
+
+### Independently author relationships and allowed variation
+
+Prefer a justified gap, alignment, containment or minimum-size obligation over incidental absolute coordinates when the product intent permits reflow. A title wrapping to another line may move the action while preserving the required gap. Absolute placement remains valid when independently required; this is not permission to discard positioning obligations.
+
+For example, the approved obligation might be `action.top - title.bottom = 12` in a declared coordinate space, rather than `action.top = 86`. The numbers are illustrative, not universal defaults. Bind the reference, scenario, subjects and allowed variation before collection; justify tolerance and include a rejecting example. Structured design properties may inform suggestions, but neither a design reader nor an agent may silently approve them or derive the expected value from the candidate.
+
+### Qualify readiness before using observations
+
+The consumer's runner/collector owns scenario-specific readiness: relevant fonts and images, layout, transitions, keyboard state and animations as applicable. A bounded wait must terminate with a qualified capture or an explicit collection limitation/failure. Two equal rectangle samples or network idleness alone do not establish the intended state or resource readiness.
+
+If required readiness or coherence cannot be established, do not promote the last sample to qualified evidence. Represent the limitation through the accepted contract where possible, withholding the affected assertion as `not_measured`; otherwise refuse the capture or fail setup. Preserve unrelated qualified outcomes where the contract permits them. Do not invent wire fields or make the pure evaluator claim it independently observed readiness.
+
+### Preserve evidence kind, precision and logical scope
+
+An exporter can substitute a raster image to preserve appearance; a verifier cannot substitute screenshot estimates or accessibility rectangles for missing native layout facts. Select the provider according to the obligation, preserving the distinctions in the context table below. Geometry passing does not establish painted visibility or actionability.
+
+Only use coordinate/unit conversions supported by the observation and an explicit common space. Preserve fractional values and the declared origin; do not independently recenter reference and candidate to hide displacement, round a failing minimum into a pass, or widen tolerance after seeing a failure. Convert physical pixels to logical units only with the applicable observed density and provider semantics.
+
+Keep subject correspondence and logical scope explicit. Overlap, similar names or physical aliases do not authorize extra scope membership. An unavailable subject is not proven absent without the required qualified, complete enumeration.
+
+### Explain one verdict rather than recomputing it
+
+Human-readable output must derive from the canonical comparison report: assertion identity, available source/reference anchor, involved subjects, expected/measured values, deviation and evidence or refusal reason. Reuse existing report fields and runner attachments. Do not fabricate a measurement for `not_measured`, hide an admission error as a mismatch, or calculate a second verdict for display.
+
+### What this discussion does not authorize
+
+No exporter, `.pen` importer, Skia/CanvasKit dependency, automatic expectation approval, screenshot-to-geometry fallback or proprietary application code is added. The [public .pen format description](https://docs.pen.dev/for-developers/the-pen-format) illustrates structured design input; it is not a capture qualification result or a dependency of Boopstick. No private reports, extracted bundles, design assets or machine-specific evidence are required to understand or implement this proposal.
+
 ## Three supported contexts: different evidence, not three frameworks
 
 These are **qualification targets**, not present support claims. Share scenario/obligation identities where meanings match; do not promise identical locators, captures or test files across renderers.
