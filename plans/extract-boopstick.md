@@ -1,19 +1,17 @@
 ---
-status: blocked
+status: in-progress
 depends: []
 specs:
   - specs/boopstick.md
-awaits:
-  - "Final parent review of this readiness draft and explicit Phase B worker assignment before code import."
 ---
 
 # Plan: extract Boopstick and qualify its testing integrations
 
 ## Scope
 
-Create a standalone comparator package and its relevant agent-neutral skill, then qualify a small RNTL/Jest recipe, Vitest consumption, one real-browser path and one real-Android-emulator path. The maintainer accepted PR1's scope and then said "ok proceed . whats next?", granting execution go-ahead for the accepted clean-import plan as prerequisites clear. This records authorization, not implementation: no source/runtime/skill has been imported, no package exists here and no integration is qualified.
+Create a standalone comparator package and its relevant agent-neutral skill, then qualify a small RNTL/Jest recipe, Vitest consumption, one real-browser path and one real-Android-emulator path. The maintainer accepted PR1 scope and execution go-ahead, then approved the owned-material Apache-2.0 grant; parent accepted the audited per-file selection and explicitly authorized Phase B after final readiness-document review. The offline core/package/CLI, retained checks and skill/provenance files are now implemented locally. Aggregate qualification and independent consumption/review are not implied by those files; no runner/collector integration is qualified.
 
-Scope acceptance and execution go-ahead are distinct from the owner's subsequent "Approve Apache-2.0" decision. That decision authorizes public redistribution under Apache-2.0 of the selected owned comparator code, independent fixtures and generic authoring prose. The parent has accepted the audited source/prose selection, allowlist, transformations and exclusions; no concrete contrary third-party notice was identified in the selected closure. Newly discovered contradictory rights findings stop or exclude the affected material, not expand the grant. Uncleared third-party material, private application assets and private history remain excluded; registry-release approval is not granted. Source/target merges, native/browser collection, release and consumer cutover still require separate approvals. This readiness update remains a local draft with no push or PR mutation. Final parent document review and explicit Phase B worker assignment precede import; no new owner confirmation is needed for the already granted scope.
+Scope acceptance and execution go-ahead are distinct from the owner's subsequent "Approve Apache-2.0" decision. That decision authorizes public redistribution of selected owned comparator code, independent fixtures and generic authoring prose; parent accepted the audited selection, transformations and exclusions. New contradictory rights findings hold or exclude affected material, not expand the grant. Uncleared third-party material, private application assets/history remain excluded. Final Phase B acceptance and ordinary commit/push/draft-PR publication are authorized after independent qualification. Source/target merges, native/browser collection, registry release and consumer cutover remain separately held.
 
 Use a clean file-based import, never a mirror, fork or history push from the source repository. Scope excludes unrelated orchestration, product application code/assets, old experimental runtimes, historical machine receipts and additional automation frameworks. No automatic executor, publication workflow or new dependency is installed by this proposal.
 
@@ -28,7 +26,7 @@ Use a clean file-based import, never a mirror, fork or history push from the sou
 1. Scope acceptance and execution go-ahead are recorded above. Keep source review, destination review, rights approval and later operational approvals distinct; none substitutes for another.
 2. Use the accepted exact-3.1 candidate as the extraction baseline: `compare` and `canonicalReport`, request schema 3, capture schema 2, report version 3 and admitted provider `web-dom-border-box`. Exact `"3.0"` headers are refused, not aliased. The core remains five relative-import modules for vocabulary, request validation, assertion evaluation, measurement and comparison. The parent has accepted the immutable source selection and declared transformations/exclusions; follow that allowlist rather than an arbitrary latest head.
 3. The earlier 3.0/no-browser source snapshot is superseded. Existing source verification is upstream evidence, not destination package or neutral-browser/Android qualification. Preserve all 19 authored and 49 independent cases during adaptation; rerun the selected contract's declared checks in Phase B. Review any further semantic change before implementation. The selected UI-authoring/evidence references still describe the old snapshot and depend on host testing/review policy. Exact source prose selection and the requirements for exact-3.1 alignment, agent neutrality and removal of host-policy/private-source dependencies are accepted. Implement and independently qualify the standalone adaptation within Phase B before publishing it, not as a prerequisite to starting Phase B. A bounded search found no comparator-specific standalone skill entrypoint; that is not a claim of global absence.
-4. Owner redistribution/license approval and parent approval of the audited per-file selection and allowlist are cleared for the selected material, with declared transformations and exclusions retained. An approved inventory is not completed extraction. If new evidence contradicts ownership or third-party clearance, hold or exclude the affected material; adding a license cannot cure missing rights. During Phase B, author public provenance using cleared source-file content digests and derivation descriptions, not private source revisions/URLs, personal metadata, history or the private mapping. Public consumers must not need the private review record. Final parent document review and explicit Phase B assignment remain before import; this documentation assignment imports nothing.
+4. Owner redistribution/license approval and parent approval of the audited per-file selection and allowlist are cleared for the selected material, with declared transformations and exclusions retained. If new evidence contradicts ownership or third-party clearance, hold or exclude the affected material; adding a license cannot cure missing rights. Phase B is explicitly assigned after parent review, not merely proposed. Public provenance uses cleared content digests and derivation descriptions, not private revisions/URLs, personal metadata, history or the private mapping. Public consumers must not need private review records.
 
 ### B. Import a behavior-preserving core and the relevant skill
 
@@ -68,15 +66,15 @@ Use the same high-level obligation across the two specimens only where semantics
 
 ## Validation
 
-The completed boxes record decisions only. All unchecked boxes are **future acceptance criteria**, not results from creating this readiness draft.
+Completed boxes record only the stated decisions or executed qualification. Unchecked boxes remain outstanding acceptance criteria; implementation files alone do not complete them.
 
 - [x] Maintainer acceptance of PR1 scope and subsequent execution go-ahead are recorded, without treating them as rights, collection, release or cutover approval.
 - [x] Owner authorization for public redistribution under Apache-2.0 of owned/cleared selected comparator code, independent fixtures and generic authoring prose is recorded; uncleared third-party material, private application assets and private history are excluded, with no blanket rights or registry-release approval.
 - [x] Parent accepts exact-3.1 alignment, agent neutrality and host-policy dependency removal as adaptation requirements; implementation and independent qualification belong within Phase B, not before it.
 - [x] Parent accepts the audited immutable source/prose selection, import allowlist and declared transformations/exclusions under the scoped owner grant; no concrete contrary third-party notice was found in the selected closure. New contradictory findings hold or exclude affected material.
-- [ ] Clean import contains only cleared code/prose/fixtures; no private history, product assets, machine receipts or private links are required by the public distribution.
-- [ ] Packed artifact works in clean supported Node/Bun consumers; core behavior, canonical reports and CLI outcomes match the frozen contract, including invalid/insufficient evidence.
-- [ ] Standalone skill works in fresh supported agent sessions without orchestration or private infrastructure and does not convert unknown evidence into approval.
+- [x] Local source-parity/privacy audit: five modules differ only by approved ESM imports/header wording; all 68 executed case IDs match; frozen 49-case data is byte-exact; public provenance contains exactly the 12 cleared input digests. No excluded history/assets/private links were found in the inspected source/distribution closure.
+- [x] Actual 21-file packed artifact works in fresh Node LTS 24.22.0 and Bun 1.4.3 consumers with no runtime/dev dependencies or TS loader; public declarations typecheck externally. Pass/fail/not-measured/invalid request/invalid capture, canonical stdout/newline, read/parse/usage errors, help and installed bin were exercised. Strict source/check types and ESM/declaration build passed with TypeScript 7.0.2.
+- [x] Fresh skill-only independent consumption passed seven frozen cases on Node LTS 24.21.0 and Bun 1.4.3: all 14 API and 14 CLI outcomes matched independent expectations without changing oracle files. This is bounded offline authoring/interpretation evidence, not general UI acceptance or collector qualification.
 - [ ] A pinned RNTL/Jest consumer and a Vitest consumer run ordinary named cases individually and together; RNTL events remain synthetic; existing behavior matchers are reused.
 - [ ] Full CI detects omitted/skipped/duplicate/expected-failing/unmeasured obligations, missing results and stale/wrong-identity evidence; local selection does not alter the required inventory.
 - [ ] Android emulator interaction → qualified fresh capture → named verdicts works for a valid state, real defect, repair and missing evidence, with correct semantics and clean teardown.
@@ -95,7 +93,13 @@ The completed boxes record decisions only. All unchecked boxes are **future acce
 
 ## Notes
 
-The accepted PR1 scope, execution instruction, scoped owner Apache-2.0 grant and parent-approved audited selection clear the owner/selection decisions for Phase B. Final local document review and explicit Phase B assignment still precede import; no new owner confirmation is needed for those granted scopes. The package, standalone skill, integrations and consumer migration remain unexecuted. This readiness draft awaits parent review before publication; PR2/3 are not adopted. The chosen name is Boopstick; npm reservation and registry-release approval are not implied.
+Phase B is implemented locally and its aggregate offline gates passed: strict types/build, 68 current behavior cases, clean packed Node LTS/Bun JS and declarations consumers, real CLI outcomes, 21-file artifact allowlist/license, skill-only frontmatter/relative-reference closure, immutable-source/fixture/case parity and sanitized provenance/privacy audit. The first neutral package-smoke fixture omitted the required rectangular `spaceId`; its actual `invalid_capture` failure was preserved, the fixture was corrected without changing the evaluator or expectations, and only the failed package gate was rerun. Earlier successful runtime checks were not repeated.
+
+Final independent core/package verification passed the reviewed 23-file candidate and its 68 retained cases, public API/types and CLI. Fresh independent skill consumption passed the bounded seven-case matrix described above. Parent accepted Phase B and authorized ordinary commit/push plus a draft implementation PR stacked on the accepted planning branch; this does not merge any proposal or qualify C/D/E.
+
+Tooling correction: the earlier package checker improperly used npm pack/install despite the Bun-only instruction. Those commands/results and the missing-`spaceId` failure remain preserved, not relabelled compliant. The corrected checker uses documented `bun pm pack` and local `bun add` with lifecycle scripts disabled. Its affected gate and targeted independent verification passed on Node LTS 24.22.0/Bun 1.4.3 without repeating unchanged 68-case/build/fresh-skill campaigns. Independent Bun repacking matched corrected archive SHA-256 `7d4a12bfc32cb97a90e24be906e74288032cdeb559c235b29c3002dd401f9463`. Relative to the earlier archive, 20/21 packed files are byte-identical; only `package.json` JSON whitespace differs, with identical parsed values/key order. Archive-byte identity with the earlier artifact is not claimed.
+
+Registry release, runner/collector qualification and consumer cutover remain unexecuted. PR2/3 remain unadopted; C/D/E retain their full accepted scope and separate operational gates. This plan remains in progress.
 
 ## Follow-ups
 
