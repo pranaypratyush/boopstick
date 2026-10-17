@@ -23,7 +23,7 @@ Use a clean file-based import, never a mirror, fork or history push from the sou
 
 [Proposed Boopstick behavior](../specs/boopstick.md): one pure comparator, ordinary selectable tests with complete CI accounting, honest RNTL/browser/native evidence boundaries, optional integration dependencies and a standalone authoring skill.
 
-This amendment operationalizes [the evidence-pipeline improvement intent](../specs/boopstick.md#improvement-intent-preserve-structure-without-manufacturing-certainty): independently authored relationships, qualified readiness, non-substitutable evidence, lossless justified coordinate conversion and one canonical verdict presentation. It does not change the pure core or reduce the three-context qualification target. It adds no implementation permission; all `awaits` prerequisites remain in force.
+This amendment operationalizes [the evidence-pipeline improvement intent](../specs/boopstick.md#improvement-intent-preserve-structure-without-manufacturing-certainty): independently authored relationships, qualified readiness, non-substitutable evidence, justified coordinate conversion that preserves required precision and one canonical verdict presentation. It does not change the pure core or reduce the three-context qualification target. It adds no implementation permission; all `awaits` prerequisites remain in force.
 
 ## Approach
 
