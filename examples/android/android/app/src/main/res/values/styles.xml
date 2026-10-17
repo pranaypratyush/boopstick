@@ -1,0 +1,4 @@
+<!-- Derived from Community template 0.88.0; see THIRD_PARTY_NOTICES.md. -->
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
+</resources>

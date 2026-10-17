@@ -1,0 +1,19 @@
+{
+  "name": "boopstick-android-specimen",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0 AND MIT",
+  "packageManager": "bun@1.4.3",
+  "engines": { "node": "24.21.0", "bun": "1.4.3" },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-native": "0.88.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.28.0",
+    "@react-native/babel-preset": "0.88.0",
+    "@react-native/metro-config": "0.88.0",
+    "@react-native-community/cli": "20.2.0",
+    "@react-native-community/cli-platform-android": "20.2.0"
+  }
+}

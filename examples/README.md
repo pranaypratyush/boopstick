@@ -1,8 +1,12 @@
-# Optional runner and browser examples
+# Optional runner, browser and Android examples
 
-These private examples consume a caller-supplied packed `boopstick` artifact. They do not import repository `src`, install dependencies into core, or imply a registry release. Bounded local ordinary-runner/synthetic qualification, general independent Phase C verification and targeted independent fail-closed correction verification passed; parent accepted bounded Phase C. The actual runner runtime was **Node 24.21.0 LTS Krypton / Bun 1.4.3**, distinct from Phase B package qualification on Node 24.22.0.
+The runner and browser examples consume a caller-supplied packed `boopstick` artifact. They do not import repository `src`, install dependencies into core, or imply a registry release. Bounded local ordinary-runner/synthetic qualification, general independent Phase C verification and targeted independent fail-closed correction verification passed; parent accepted bounded Phase C. The actual runner runtime was **Node 24.21.0 LTS Krypton / Bun 1.4.3**, distinct from Phase B package qualification on Node 24.22.0.
 
 The separately qualified [browser trial](browser/README.md) uses Playwright Test 1.64.1 / Chromium headless shell 156.0.8078.4 on Node 24.21.0 LTS / Bun 1.4.3. Independent raw-byte correction verification passed twelve tests across two viewports, all 26 original references and attached copies, and all 32 reference occurrences including labelled counterfactuals; parent accepted the bounded result. Original specimen interaction, fractional rectangles, defect/repair, missing/absence/zero/duplicate observations, overlay counterexample and owned cleanup are distinct obligations. Historical setup/filter failures and raw mismatches are retained; selected/setup receipts are not retroactively byte-correct. This host-specific CachyOS trial is not native qualification, official distro support or a registry release; the existing packed artifact does not contain these repository examples.
+
+## Android build-only specimen
+
+The separate [Android specimen](android/README.md) is an original neutral RN app, not a comparator consumer or native collector. Parent accepted its bounded diagnostic build and independent Spec/APK file-only plus Standards/rights reviews; no independent rebuild, deployment, native interaction, measured geometry or device cleanup is claimed. Its README retains the first timeout/isolation failure, successful separately approved resumption, exact APK binding, MIT/Apache provenance and unresolved merged-permission/device gates. APKs, keys, caches and private receipts are excluded; the accepted package archive is unchanged.
 
 ## Ordinary Vitest/RNTL consumers
 
