@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Neutral border-box specimen</title>
+<style>
+  html, body { margin: 0; overflow: hidden; font: 16px sans-serif; }
+  #specimen { position: absolute; left: 16px; top: 24px; }
+  [data-observation="panel"] { box-sizing: border-box; width: 200.5px; height: 48px; border: 1px solid black; background: lightblue; }
+  @media (min-width: 800px) { [data-observation="panel"] { width: 360.25px; } }
+  #specimen[data-mode="defect"] [data-observation="panel"] { height: 47px; }
+  #specimen[data-mode="zero"] [data-observation="panel"] { width: 0; height: 0; border: 0; }
+  #overlay { position: fixed; inset: 0; z-index: 10; background: rgb(0 0 0 / 20%); }
+</style>
+<main id="specimen" data-state="idle">
+  <div data-observation="panel">Independent geometry</div>
+  <button type="button" id="toggle" aria-pressed="false">Toggle option</button>
+  <output id="state">Disabled</output>
+</main>
+<script>
+  const parameters = new URLSearchParams(location.search);
+  const root = document.getElementById('specimen');
+  root.dataset.mode = parameters.get('mode') || 'normal';
+  for (const name of ['runId', 'candidate', 'fixture', 'checkpoint', 'variant']) {
+    root.dataset[name] = parameters.get(name) || '';
+  }
+  const panel = root.querySelector('[data-observation="panel"]');
+  if (root.dataset.mode === 'absent') panel.remove();
+  if (root.dataset.mode === 'duplicate') root.append(panel.cloneNode(true));
+  if (root.dataset.mode === 'overlay') {
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    overlay.setAttribute('aria-label', 'Deliberate pointer obstruction');
+    document.body.append(overlay);
+  }
+  document.getElementById('toggle').addEventListener('click', event => {
+    const enabled = event.currentTarget.getAttribute('aria-pressed') !== 'true';
+    event.currentTarget.setAttribute('aria-pressed', String(enabled));
+    document.getElementById('state').textContent = enabled ? 'Enabled' : 'Disabled';
+    root.dataset.state = enabled ? 'enabled' : 'disabled';
+  });
+</script>
+</html>
