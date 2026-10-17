@@ -4,41 +4,41 @@ depends: []
 specs:
   - specs/boopstick.md
 awaits:
-  - "Maintainer acceptance of this scope and a separate explicit instruction to execute the move."
-  - "Acceptance and freeze of the source comparator contract/runtime, with the approved skill material identified."
-  - "Source redistribution/third-party rights clearance and approval of the release license and file allowlist."
+  - "Final parent review of this readiness draft and explicit Phase B worker assignment before code import."
 ---
 
 # Plan: extract Boopstick and qualify its testing integrations
 
 ## Scope
 
-Create a standalone comparator package and its relevant agent-neutral skill, then qualify a small RNTL/Jest recipe, one real-browser path and one real-Android-emulator path. This is **a migration proposal, not the migration itself**. The current public repository contains only original planning prose. No source/runtime/skill has been imported, no package exists here and no integration is qualified.
+Create a standalone comparator package and its relevant agent-neutral skill, then qualify a small RNTL/Jest recipe, Vitest consumption, one real-browser path and one real-Android-emulator path. The maintainer accepted PR1's scope and then said "ok proceed . whats next?", granting execution go-ahead for the accepted clean-import plan as prerequisites clear. This records authorization, not implementation: no source/runtime/skill has been imported, no package exists here and no integration is qualified.
 
-Creating the repository and opening its draft PR are authorized. Starting implementation, collecting private app evidence, publishing packages, merging source PRs or changing consumers is not. Keep this PR draft until the maintainer accepts its decisions. Merging a planning document alone is not execution authorization; leave the plan blocked until the recorded prerequisites actually clear.
+Scope acceptance and execution go-ahead are distinct from the owner's subsequent "Approve Apache-2.0" decision. That decision authorizes public redistribution under Apache-2.0 of the selected owned comparator code, independent fixtures and generic authoring prose. The parent has accepted the audited source/prose selection, allowlist, transformations and exclusions; no concrete contrary third-party notice was identified in the selected closure. Newly discovered contradictory rights findings stop or exclude the affected material, not expand the grant. Uncleared third-party material, private application assets and private history remain excluded; registry-release approval is not granted. Source/target merges, native/browser collection, release and consumer cutover still require separate approvals. This readiness update remains a local draft with no push or PR mutation. Final parent document review and explicit Phase B worker assignment precede import; no new owner confirmation is needed for the already granted scope.
 
 Use a clean file-based import, never a mirror, fork or history push from the source repository. Scope excludes unrelated orchestration, product application code/assets, old experimental runtimes, historical machine receipts and additional automation frameworks. No automatic executor, publication workflow or new dependency is installed by this proposal.
 
 ## Implements
 
-[Proposed Boopstick behavior](../specs/boopstick.md): one pure comparator, ordinary selectable tests with complete CI accounting, honest RNTL/browser/native evidence boundaries, optional integration dependencies and a standalone authoring skill.
+[Accepted Boopstick target behavior](../specs/boopstick.md): one pure comparator, ordinary selectable tests with complete CI accounting, honest RNTL/browser/native evidence boundaries, optional integration dependencies and a standalone authoring skill. PR2 and PR3 remain separate unapproved amendments; this plan does not adopt their requirements.
 
 ## Approach
 
 ### A. Resolve readiness and freeze the move
 
-1. Record the maintainer's scope acceptance and separate execution go-ahead. Keep source review and destination review as distinct approvals.
-2. Accept the source contract and corresponding runtime before selecting immutable import revisions. Where the runtime review is stacked on the contract review, resolve that dependency first. Skill material can be accepted independently, but must match the selected comparator contract. Do not assume an arbitrary latest head or a merged skill means the runtime is accepted.
-3. Reconcile changes since the inspected source snapshot and rerun its declared behavioral evidence before importing. If accepted semantics differ from this proposal, amend the proposal before implementation rather than silently changing the target.
-4. Create an explicit source-to-destination allowlist and provenance/license record. Review ownership and third-party terms for code, prose and fixtures. Apache-2.0 is proposed, not approved; adding a license cannot cure missing rights. Keep private review locations/revisions in the maintainer's existing review record until disclosure is cleared; public users must not need that private record to use the released package.
+1. Scope acceptance and execution go-ahead are recorded above. Keep source review, destination review, rights approval and later operational approvals distinct; none substitutes for another.
+2. Use the accepted exact-3.1 candidate as the extraction baseline: `compare` and `canonicalReport`, request schema 3, capture schema 2, report version 3 and admitted provider `web-dom-border-box`. Exact `"3.0"` headers are refused, not aliased. The core remains five relative-import modules for vocabulary, request validation, assertion evaluation, measurement and comparison. The parent has accepted the immutable source selection and declared transformations/exclusions; follow that allowlist rather than an arbitrary latest head.
+3. The earlier 3.0/no-browser source snapshot is superseded. Existing source verification is upstream evidence, not destination package or neutral-browser/Android qualification. Preserve all 19 authored and 49 independent cases during adaptation; rerun the selected contract's declared checks in Phase B. Review any further semantic change before implementation. The selected UI-authoring/evidence references still describe the old snapshot and depend on host testing/review policy. Exact source prose selection and the requirements for exact-3.1 alignment, agent neutrality and removal of host-policy/private-source dependencies are accepted. Implement and independently qualify the standalone adaptation within Phase B before publishing it, not as a prerequisite to starting Phase B. A bounded search found no comparator-specific standalone skill entrypoint; that is not a claim of global absence.
+4. Owner redistribution/license approval and parent approval of the audited per-file selection and allowlist are cleared for the selected material, with declared transformations and exclusions retained. An approved inventory is not completed extraction. If new evidence contradicts ownership or third-party clearance, hold or exclude the affected material; adding a license cannot cure missing rights. During Phase B, author public provenance using cleared source-file content digests and derivation descriptions, not private source revisions/URLs, personal metadata, history or the private mapping. Public consumers must not need the private review record. Final parent document review and explicit Phase B assignment remain before import; this documentation assignment imports nothing.
 
 ### B. Import a behavior-preserving core and the relevant skill
 
-Import only the accepted evaluator, request validation, rule evaluation, measurement and vocabulary modules; necessary behavioral fixtures; the self-contained contract; and the relevant authoring/evidence prose. Exclude obsolete comparator implementations and assertions that depend on running them. Retain independently justified oracle coverage without shipping private assets or deriving expected results from the candidate implementation.
+Import only the accepted evaluator, request validation, rule evaluation, measurement and vocabulary modules; necessary behavioral fixtures; the self-contained contract; and the accepted source authoring/evidence prose for adaptation. Exclude obsolete 2.1 and presemantic 3.0 implementations and assertions that depend on running them. The current source check imports the presemantic runtime, so it cannot be copied wholesale: adapt the selected behavior/oracle checks to run against the current core without carrying that obsolete implementation. Retain independently justified oracle coverage without shipping private assets or deriving expected results from the candidate implementation.
 
-One package is enough. Add only the package entry, compiled ESM/declarations, explicit exports, offline file-in/report-out CLI, retained behavior checks and neutral examples needed to consume it. Keep the two core functions and accepted statuses intact. Extract one `boopstick` skill, not the parent orchestration skill. Package behavior and skill guidance must agree on the frozen contract; neither needs private tools, a hosted service or a particular agent provider.
+One dependency-free package named `boopstick` is enough: compiled ESM/declarations, explicit exports, the offline CLI, retained behavior checks and neutral examples. Keep `private: true` until separate registry-release approval. Keep the two core functions and accepted statuses intact. Implement `boopstick <request.json> <capture.json>` and `--help` with the [specified output/exit contract](../specs/boopstick.md#distribution-and-skill): canonical report plus newline for comparator results, exits 0/1/2 for all-pass/fail-or-unmeasured/invalid-or-operational-error; operational errors use stderr without a fabricated report, and help exits 0. Add no stdin/watch/daemon/retry features.
 
-Inspect the packed artifact in a clean directory with supported Node LTS and Bun. Exercise pass, measured failure, not-measured, invalid input and operational errors, including CLI exit behavior. Review secrets, personal/machine paths, assets, notices and package contents before any public code push. Publish the cleared provenance/contract alongside the code so public consumers do not follow private links.
+Within Phase B, extract and adapt one `boopstick` skill, not the parent orchestration skill, then independently qualify it in fresh supported agent sessions before publication. Package behavior and skill guidance must agree on exact 3.1; remove host-policy/private-source dependencies and keep the skill agent-neutral. Place the one canonical contract at `skills/boopstick/references/contract.md`, not `docs/contract.md`; link it from the package README and pack the skill bundle with that contract so skill-directory-only copies remain self-contained. Add no duplicate schema document. Include Apache-2.0 `LICENSE` in the repository/package and author compact sanitized `docs/provenance.md` with cleared content digests and origin/derivation, excluding private URLs/revisions and personal emails.
+
+Inspect the packed artifact in a clean directory with supported Node LTS and Bun. Exercise pass, measured failure, not-measured, invalid input and operational errors, including the specified stdout/stderr/newline/exit behavior and help. Verify the packed skill/contract and license are present and the skill-only copy is self-contained. Review secrets, personal/machine paths, assets, notices, source/privacy boundaries and package contents; obtain parent review before any public code push. Keep registry release separately gated and `private: true` until approved. Publish the cleared provenance/contract alongside the code so public consumers do not follow private links.
 
 ### C. Qualify ordinary-test integration, including RNTL
 
@@ -54,7 +54,7 @@ After B/C and approval of each collection scope, qualify the native and browser 
 
 **Android emulator:** use one original neutral RN specimen and a bounded scenario. Drive an actual interaction with Maestro or the consumer's already-chosen native driver; use authorized ADB and/or in-app RN hooks for the measurements the obligation requires. Select the correct checkpoint, qualify coordinate/unit conversion, keep accessibility/layout/text observations distinct, capture one real defect and repair, and prove no stale evidence or leaked process/device state. Feed the capture into ordinary TS cases; do not run the comparator inside Maestro's JavaScript sandbox. No Detox/Appium stack is added merely to obtain these facts.
 
-**Real browser:** approve the browser-provider contract amendment before implementation. Use Playwright Test fixtures against one original neutral specimen at two viewport sizes, with an actual interaction before collection. Define DOM rectangle semantics, subject identity, units/origin, scope and readiness. Test fractional measurements, a real defect/repair, missing observations and an overlay counterexample. Preserve browser actionability as a separate obligation rather than claiming geometry proves interaction success. RN Web remains browser evidence.
+**Real browser:** use the accepted exact-3.1 `web-dom-border-box` provider rather than inventing or relabelling a provider. After collection-scope approval, use Playwright Test fixtures against one original neutral specimen at two viewport sizes, with an actual interaction before collection. Qualify DOM border-box acquisition, subject identity, units/origin, scope and readiness against the accepted contract. Test fractional measurements, a real defect/repair, missing observations and an overlay counterexample. Preserve browser actionability as a separate obligation rather than claiming geometry proves interaction success. RN Web remains browser evidence. Bounded upstream browser evidence does not satisfy this neutral integration's qualification.
 
 Use the same high-level obligation across the two specimens only where semantics truly match. Do not force identical locators or manufacture a universal test DSL. Initial Android qualification does not imply iOS/physical-device support; adding those needs explicit later scope and execution evidence.
 
@@ -68,9 +68,12 @@ Use the same high-level obligation across the two specimens only where semantics
 
 ## Validation
 
-All boxes below are **future acceptance criteria**, not results from publishing this plan.
+The completed boxes record decisions only. All unchecked boxes are **future acceptance criteria**, not results from creating this readiness draft.
 
-- [ ] Maintainer acceptance, execution permission, accepted source revisions, license/rights and file allowlist are recorded; source review dependencies are satisfied.
+- [x] Maintainer acceptance of PR1 scope and subsequent execution go-ahead are recorded, without treating them as rights, collection, release or cutover approval.
+- [x] Owner authorization for public redistribution under Apache-2.0 of owned/cleared selected comparator code, independent fixtures and generic authoring prose is recorded; uncleared third-party material, private application assets and private history are excluded, with no blanket rights or registry-release approval.
+- [x] Parent accepts exact-3.1 alignment, agent neutrality and host-policy dependency removal as adaptation requirements; implementation and independent qualification belong within Phase B, not before it.
+- [x] Parent accepts the audited immutable source/prose selection, import allowlist and declared transformations/exclusions under the scoped owner grant; no concrete contrary third-party notice was found in the selected closure. New contradictory findings hold or exclude affected material.
 - [ ] Clean import contains only cleared code/prose/fixtures; no private history, product assets, machine receipts or private links are required by the public distribution.
 - [ ] Packed artifact works in clean supported Node/Bun consumers; core behavior, canonical reports and CLI outcomes match the frozen contract, including invalid/insufficient evidence.
 - [ ] Standalone skill works in fresh supported agent sessions without orchestration or private infrastructure and does not convert unknown evidence into approval.
@@ -83,7 +86,7 @@ All boxes below are **future acceptance criteria**, not results from publishing 
 
 ## Risks / unknowns
 
-- **Rights and acceptance:** source being available to a maintainer does not make it redistributable or accepted. These are hard pre-import gates, not paperwork after publication.
+- **Rights boundary:** the scoped owner grant and audited selection are approved, not a blanket grant. Hold or exclude affected material if new contradictory ownership/third-party evidence appears; private assets/history remain excluded.
 - **Scope creep:** supporting three contexts is useful; owning three automation stacks is not. RNTL initially needs a tested recipe, not a collector. Browser and native each get one qualified path.
 - **Evidence mismatch:** equal numeric values do not make layout, accessibility, hit regions and synthetic events interchangeable. Refusal semantics must survive the wrappers.
 - **Contract/version drift:** browser vocabulary and any changed incoming contract require explicit review and migration, not a branding-only change.
@@ -92,7 +95,7 @@ All boxes below are **future acceptance criteria**, not results from publishing 
 
 ## Notes
 
-Repository creation and this draft are planning/publication work only. The package, skill, integrations and consumer migration remain unexecuted. The chosen name is Boopstick; legal clearance and npm reservation are not implied.
+The accepted PR1 scope, execution instruction, scoped owner Apache-2.0 grant and parent-approved audited selection clear the owner/selection decisions for Phase B. Final local document review and explicit Phase B assignment still precede import; no new owner confirmation is needed for those granted scopes. The package, standalone skill, integrations and consumer migration remain unexecuted. This readiness draft awaits parent review before publication; PR2/3 are not adopted. The chosen name is Boopstick; npm reservation and registry-release approval are not implied.
 
 ## Follow-ups
 
