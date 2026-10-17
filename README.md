@@ -2,7 +2,7 @@
 
 A poking stick for overconfident agents.
 
-Boopstick checks explicit UI obligations against supplied observations. It is not artificial vision and does not certify an entire UI. The local offline implementation is present; registry release, supported runner/collector integrations and consumer cutover are not claimed.
+Boopstick checks explicit UI obligations against supplied observations. It is not artificial vision and does not certify an entire UI. The offline implementation and bounded ordinary-runner/synthetic examples are locally qualified; registry release, live collector integrations and consumer cutover are not claimed.
 
 ## Core and contract
 
@@ -50,6 +50,12 @@ Run these with the supported Node LTS binary first on `PATH`; the package qualif
 
 No registry installation command is advertised: the package is `private: true` and no registry release is authorized. Source/API comparison checks and independent review remain part of delivery, not implied by creating files.
 
+## Ordinary-runner examples
+
+The optional [Vitest and RNTL/Jest consumers](examples/README.md) install a caller-supplied packed artifact into separate pinned dev closures. Local qualification passed on Node **24.21.0 LTS** and Bun **1.4.3**: full and individual named cases, real skipped/expected-failing cases, measured mismatch, missing observation and request/capture admission failures. Exact-ID reconciliation refuses partial or wrongly bound evidence even when the runner is green; the original campaign rejected 23 labelled report counterfactuals per consumer.
+
+RNTL exercises an actual awaited interaction with existing matchers and explicitly supplied synthetic layout events, not native geometry. Its native Node ESM recipe uses queries returned by `await render(...)`, avoiding a stale named CJS `screen` export. The initial integration failure and affected-only repair rerun are retained. General independent Phase C verification passed; supplemental probes then found unknown aggregate statuses and missing/nonboolean Jest `failing` flags were accepted. The bounded repair rejected 24 Vitest/26 Jest counterfactuals and replayed all 18 retained real inputs offline without changing their dispositions or losing diagnostics. Targeted independent correction verification passed with both findings closed and no new findings; parent accepted bounded Phase C. This complements the prior real-run proof, not a fresh runner campaign; browser/Android collection is not qualified.
+
 ## Skill, provenance and remaining scope
 
 The [agent-neutral skill](skills/boopstick/SKILL.md) carries its own contract and evidence references; copy its entire directory, not only the entrypoint. Skill use grants no device/data access, installation or release authority.
@@ -61,4 +67,4 @@ The [agent-neutral skill](skills/boopstick/SKILL.md) carries its own contract an
 
 The owner approved redistribution of selected owned comparator code, independent fixtures and generic prose under Apache-2.0; parent accepted the audited selection and exclusions. Uncleared third-party material, private application assets/history and machine receipts are not distribution inputs. New contrary rights findings hold or exclude affected material.
 
-RNTL/Jest, Vitest complete-CI accounting, neutral real-browser and Android qualification remain full target scope, not present support claims. Collection scopes, source/target merges, registry release and active-consumer cutover retain separate approval gates. PR2/3 amendments are not adopted by this extraction.
+Bounded Vitest/RNTL ordinary-test accounting is locally qualified, not live UI acceptance. Neutral real-browser and Android qualification remain full target scope. Collection scopes, source/target merges, registry release and active-consumer cutover retain separate approval gates. PR2/3 amendments are not adopted by this extraction.

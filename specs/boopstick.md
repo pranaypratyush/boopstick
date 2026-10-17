@@ -2,6 +2,8 @@
 
 **Accepted scope; bounded offline Phase B independently qualified.** Local aggregate and independent core/package checks passed, including the corrected Bun-only packaging gate. Fresh skill-only consumption passed seven independently frozen cases through API and CLI on Node LTS 24.21.0/Bun 1.4.3 (14 API and 14 CLI outcomes). Parent accepted these results and authorized a draft implementation PR, not merge, collection, registry release or consumer cutover. The scoped Apache-2.0 grant and accepted per-file selection exclude uncleared third-party material, private application assets/history and blanket private disclosure. The [plan](../plans/extract-boopstick.md) records retained failures, tooling correction and full remaining C/D/E scope.
 
+**Bounded ordinary-runner/synthetic Phase C independently verified and parent accepted.** The optional Vitest and RNTL/Jest examples consume the accepted packed artifact with isolated pinned development dependencies. Full and individual named cases, real skip/expected-failure/mismatch/missing/admission controls and exact-ID accounting passed on Node LTS **24.21.0**/Bun **1.4.3**. Supplemental probes found acceptance of unknown aggregate statuses and missing/nonboolean Jest inversion metadata; the bounded repair rejected 24 Vitest/26 Jest report counterfactuals and preserved 18 retained real-run dispositions and original diagnostics in offline replay. The historical campaign's 23 counterfactuals per consumer and failing supplemental evidence remain retained. Targeted independent correction verification closed both findings with no new findings; parent accepted these bounded results. This complements prior real-run proof, not a fresh runner campaign, and establishes ordinary-runner compatibility and synthetic policy feedback only, not native/browser layout acceptance. The plan retains the initial RNTL ESM/CJS query failure and affected-only correction.
+
 ## Purpose and principles
 
 Boopstick gives agents and developers explicit feedback about predictable UI mistakes. It checks declared obligations against supplied observations; it does not give an agent general vision or certify that a whole interface is correct.
@@ -22,7 +24,7 @@ Preserve `pass`, `fail` and `not_measured`, with invalid request/capture disting
 
 ## Three supported contexts: different evidence, not three frameworks
 
-These are **qualification targets**, not present support claims. Share scenario/obligation identities where meanings match; do not promise identical locators, captures or test files across renderers.
+The ordinary RNTL/Jest recipe and Vitest accounting have bounded local executed qualification, general independent Phase C verification, targeted independent fail-closed correction verification and parent acceptance; the real browser and native rows remain unqualified targets. Share scenario/obligation identities where meanings match; do not promise identical locators, captures or test files across renderers.
 
 | Context | What remains with existing tools | Boopstick's intended role | What it must not claim |
 |---|---|---|---|
@@ -57,6 +59,8 @@ Required captures from multiple providers cannot be combined across unrelated st
 - Skipped, missing, duplicated/conflicting, invalid, unmeasured or expected-failing UI obligations cannot satisfy full acceptance. Negative comparator contract tests are a different purpose from application acceptance.
 - Default acceptance uses no retries. Any approved retry policy must preserve failed attempts and obtain correctly bound fresh evidence rather than retrying a snapshot until green. Immutable offline replay is labelled as replay.
 - If sharded later, require the complete shard set and matching candidate/request/environment identities. An individual shard is partial evidence. Do not introduce a second inventory: reuse existing declarations and standard machine reports.
+
+The local [ordinary-runner examples](../examples/README.md) exercise this accounting with canonical declaration-derived JSON tuple identities, built-in Vitest JSON/meta and Jest JSON plus one local evidence attachment. Only complete correct invocations satisfy the gate; selected feedback is not full acceptance. Separately labelled report counterfactuals exercise missing/duplicate/stale/discovery accounting without claiming those were runner executions. No custom runner/reporter/matcher, shared public adapter or second expected-ID registry is required.
 
 ## Distribution and skill
 
