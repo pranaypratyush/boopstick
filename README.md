@@ -4,21 +4,17 @@ A poking stick for overconfident agents.
 
 Boopstick checks explicit UI obligations against supplied observations: sizes, gaps, alignment, containment, overlap, presence and semantic text. It catches predictable mistakes without pretending to give an agent vision. Keep your existing test runner and interaction tools; each obligation can be an ordinary, independently selectable test.
 
-**Status:** the offline package, RNTL/Jest and Vitest recipes, and bounded Playwright browser trial have independent qualification. Android runtime qualification is incomplete. No npm release or active-consumer cutover is claimed.
+**Qualified paths:** the offline package, RNTL/Jest and Vitest recipes, a bounded Playwright browser specimen, and a real Android-emulator specimen have independent verification. These are tested combinations, not a promise that any app, driver or platform works unchanged.
 
-## Try it from source
+## Install
 
-Use Bun >=1.4.3 and supported Node LTS >=24. The development dependencies are pinned; the distributed ESM library has no runtime dependencies. Until the first release, use the public implementation branch:
+Use supported Node LTS >=24 or Bun >=1.4.3. The distributed ESM library has no runtime dependencies or TypeScript-loader requirement. Install the pinned package with your package manager; these commands use Bun:
 
 ```sh
-git clone --branch prepare/boopstick-extraction-readiness https://github.com/pranaypratyush/boopstick.git
-cd boopstick
-bun install --frozen-lockfile --ignore-scripts
-bun run build
-bun pm pack --ignore-scripts --filename boopstick-0.0.0.tgz
+bun add --dev --exact --ignore-scripts boopstick@0.1.0
 ```
 
-In a separate consumer directory, install that local tarball with `bun add --ignore-scripts /absolute/path/to/boopstick-0.0.0.tgz`. No private checkout, TypeScript loader, browser or emulator is needed for the core. The package remains `private: true` until release qualification and authorization are complete; `bun add boopstick` is not yet an available registry-installation path.
+The package contains the library, declarations, CLI and standalone agent skill. Browser/emulator drivers and optional examples are not core dependencies.
 
 Save this as `demo.mjs` in the consumer, then run `node demo.mjs`:
 
@@ -86,9 +82,9 @@ Comparator reports are canonical JSON plus one newline on stdout. Exit **0** mea
 | RNTL + Jest | Real component interaction, existing matchers and supplied synthetic comparator fixtures | RNTL does not measure native layout, clipping or touch regions. |
 | Vitest | Named comparator cases, local filtering and complete-result reconciliation | A filtered or skipped green run cannot approve the full declared matrix. |
 | Playwright Test | Actual interaction and DOM border boxes at two viewport sizes in the bounded specimen | Browser geometry does not prove actionability or native behavior. |
-| Android emulator | Original RN specimen and native qualification work in progress | Not yet a qualified integration; build success is not measurement acceptance. |
+| Android emulator | Actual RN `measureInWindow` captures after Maestro interaction; five modes and 15 ordinary cases | Qualified only for the recorded static specimen/environment, not physical devices, iOS or general transport reliability. |
 
-The [optional examples](https://github.com/pranaypratyush/boopstick/tree/prepare/boopstick-extraction-readiness/examples) use existing runner hooks, reports and filtering. They are repository examples, not core dependencies or files in the package archive. RNTL/Jest and Vitest were exercised on Node 24.21.0/Bun 1.4.3; the browser trial used Playwright Test 1.64.1/Chromium 156.0.8078.4 on CachyOS. These are bounded tested combinations, not blanket platform support.
+The [optional examples](https://github.com/pranaypratyush/boopstick/tree/v0.1.0/examples) use existing runner hooks, reports and filtering. They are repository examples, not files in the package archive. RNTL/Jest and Vitest were exercised on Node 24.21.0/Bun 1.4.3; the browser trial used Playwright Test 1.64.1/Chromium 156.0.8078.4 on CachyOS. The Android path used RN 0.88.0, Maestro 2.11.0 and an API35 x86_64 emulator at density2.625/fontScale1/LTR. Its earlier transport loss remains unexplained; the later successful run does not erase that operational limitation.
 
 Register cases from your declarations before collection, evaluate the intact request, then select exactly one outcome by assertion ID. A failing sibling must not fail a passing case solely through aggregate status. Full acceptance must account for every required case; invalid, missing, skipped or expected-failing obligations cannot satisfy it. The examples demonstrate the accounting without adding a new runner, matcher framework or test inventory.
 
@@ -100,7 +96,7 @@ Copy the entire bundled `skills/boopstick` directory into your agent's supported
 
 ## Develop and verify
 
-With supported Node LTS first on `PATH`, after edits settle:
+Clone the public repository and install its pinned development dependencies with `bun install --frozen-lockfile --ignore-scripts`. With supported Node LTS first on `PATH`, after edits settle:
 
 ```sh
 bun run typecheck
@@ -112,7 +108,7 @@ bun run check
 
 The `Core and package` GitHub Actions job runs these commands on pull requests and `main`, with pinned Node/Bun and read-only repository permissions. It does not start browsers or emulators, publish packages, or replace consumer qualification.
 
-The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/prepare/boopstick-extraction-readiness/plans/extract-boopstick.md) retains the detailed executed results, failures and outstanding gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/prepare/boopstick-extraction-readiness/specs/boopstick.md) defines the full RNTL/browser/Android target. Separate proposal PRs are not silently adopted.
+The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/plans/extract-boopstick.md) retains detailed executed results, failures and remaining migration gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/specs/boopstick.md) defines the RNTL/browser/Android target. Separate proposal PRs are not silently adopted.
 
 ## License
 

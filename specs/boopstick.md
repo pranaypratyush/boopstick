@@ -1,5 +1,9 @@
 # Boopstick: accepted behavior and qualification targets
 
+**Current status:** the core/skill, ordinary RNTL/Jest and Vitest recipes, bounded browser path and bounded Android path have independent verification and parent acceptance. Android retained five actual acquisitions and passed all 15 ordinary cases; selected green feedback was refused as complete acceptance. Versioned release and inventoried consumer cutover are authorized but not yet completed. The old native transport-loss cause remains unresolved; no broader platform/reliability claim follows.
+
+## Qualification history
+
 **Accepted scope; bounded offline Phase B independently qualified.** Local aggregate and independent core/package checks passed, including the corrected Bun-only packaging gate. Fresh skill-only consumption passed seven independently frozen cases through API and CLI on Node LTS 24.21.0/Bun 1.4.3 (14 API and 14 CLI outcomes). Parent accepted these results and authorized a draft implementation PR, not merge, collection, registry release or consumer cutover. The scoped Apache-2.0 grant and accepted per-file selection exclude uncleared third-party material, private application assets/history and blanket private disclosure. The [plan](../plans/extract-boopstick.md) records retained failures, tooling correction and full remaining C/D/E scope.
 
 **Bounded ordinary-runner/synthetic Phase C independently verified and parent accepted.** The optional Vitest and RNTL/Jest examples consume the accepted packed artifact with isolated pinned development dependencies. Full and individual named cases, real skip/expected-failure/mismatch/missing/admission controls and exact-ID accounting passed on Node LTS **24.21.0**/Bun **1.4.3**. Supplemental probes found acceptance of unknown aggregate statuses and missing/nonboolean Jest inversion metadata; the bounded repair rejected 24 Vitest/26 Jest report counterfactuals and preserved 18 retained real-run dispositions and original diagnostics in offline replay. The historical campaign's 23 counterfactuals per consumer and failing supplemental evidence remain retained. Targeted independent correction verification closed both findings with no new findings; parent accepted these bounded results. This complements prior real-run proof, not a fresh runner campaign, and establishes ordinary-runner compatibility and synthetic policy feedback only, not native/browser layout acceptance. The plan retains the initial RNTL ESM/CJS query failure and affected-only correction.
@@ -32,7 +36,7 @@ Preserve `pass`, `fail` and `not_measured`, with invalid request/capture disting
 
 ## Three supported contexts: different evidence, not three frameworks
 
-The ordinary RNTL/Jest recipe and Vitest accounting have bounded independent Phase C verification and parent acceptance; the separate real-browser trial has bounded independent correction verification and parent acceptance. The native row remains an unqualified runtime target. Share scenario/obligation identities where meanings match; do not promise identical locators, captures or test files across renderers.
+The ordinary RNTL/Jest recipe, Vitest accounting, real-browser specimen and real-Android specimen have bounded independent verification and parent acceptance. Android qualification includes actual interaction, five byte-bound captures, independent retained-data replay and owned teardown, not a universal collector or portable device manager. Share scenario/obligation identities where meanings match; do not promise identical locators, captures or test files across renderers.
 
 | Context | What remains with existing tools | Boopstick's intended role | What it must not claim |
 |---|---|---|---|

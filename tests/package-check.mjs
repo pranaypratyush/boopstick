@@ -84,7 +84,7 @@ try {
   ok("tar", ["-xzf", artifact, "-C", unpacked]);
   const pkg = join(unpacked, "package");
   const manifest = JSON.parse(readFileSync(join(pkg, "package.json"), "utf8"));
-  assert.equal(manifest.private, true); assert.equal(manifest.license, "Apache-2.0");
+  assert.equal(manifest.license, "Apache-2.0");
   assert.equal(Object.keys(manifest.dependencies ?? {}).length, 0);
   for (const path of allowed) {
     assert(lstatSync(join(pkg, path)).isFile(), `regular packed file required: ${path}`);
