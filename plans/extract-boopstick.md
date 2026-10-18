@@ -1,5 +1,5 @@
 ---
-status: in-progress
+status: completed
 depends: []
 specs:
   - specs/boopstick.md
@@ -9,7 +9,7 @@ specs:
 
 ## Scope
 
-Create a standalone comparator package and its relevant agent-neutral skill, then qualify a small RNTL/Jest recipe, Vitest consumption, one real-browser path and one real-Android-emulator path. Scope, Apache-2.0 redistribution and the audited extraction selection are approved. Phase B, bounded Phase C, the browser trial and the bounded Android path now have independent verification and parent acceptance. Registry release, final versioned public onboarding and consumer cutover remain outstanding under the maintainer's conditional release/cutover grant.
+Create a standalone comparator package and its relevant agent-neutral skill, then qualify a small RNTL/Jest recipe, Vitest consumption, one real-browser path and one real-Android-emulator path. Scope, Apache-2.0 redistribution and the audited extraction selection are approved. Phases B–D have independent verification and parent acceptance. The versioned release, fresh public-registry onboarding and approved inventoried caller/skill cutover are complete within their qualified scope. This does not establish production application adoption or completion of the original shared-method stages.
 
 Scope acceptance, rights approval, collection authority and release authority remain separate. New contradictory rights findings hold or exclude affected material, not expand the grant; uncleared third-party material and private application assets/history remain excluded. The latest grant permits only the accepted plan/implementation PRs to merge after full qualification and independent review, followed by versioned release and the inventoried cutover. PR2/3 remain unadopted. The completed native invocation grants no automatic retry, rebuild, wider collection or guard relaxation.
 
@@ -79,8 +79,8 @@ Completed boxes record only the stated decisions or executed qualification. Unch
 - [x] Complete-results gate rejects real filtered/skipped/expected-failing/mismatch/unmeasured/admission outputs and the historical 23 labelled accounting counterfactuals per consumer, including exact-ID omission/duplication, missing results and stale/wrong identities. A bounded fail-closed correction additionally passed offline replay of 24 Vitest/26 Jest counterfactuals and 18 retained real inputs. Full comparator reports do not discharge unexecuted runner obligations. Targeted independent correction verification passed with both findings closed and no new findings; bounded Phase C parent accepted.
 - [x] Android emulator interaction → qualified fresh capture → named verdicts works for valid, real defect, repair, missing evidence and actual absence. Five actual acquisitions and all15 ordinary cases passed; selected1/14-skipped feedback was refused as full acceptance. Independent lifecycle/semantics reviews and parent terminal-cleanup reconciliation accepted this bounded path, not general native reliability.
 - [x] Real browser interaction → approved-provider capture → named verdicts works at two sizes, including fractional, missing and covered-element cases, with clean teardown and no native claim. Bounded CachyOS specimen trial independently verified, raw-byte finding closed and parent accepted; not broader platform certification.
-- [ ] Fresh public onboarding requires no private checkout; published support claims match executed evidence. Runtime source and license provenance are inspectable.
-- [ ] Approved consumer cutover migrates all active callers and the relevant skill, removes obsolete maintained copies and passes the affected consumer checks; failures do not trigger a hidden fallback.
+- [x] Fresh public onboarding requires no private checkout; independent Node/Bun consumers passed all25 command outcomes and all21 installed files matched the published archive. Published support claims remain bounded to executed evidence; runtime source and license provenance are inspectable.
+- [x] Approved inventoried consumer cutover migrated maintained callers and the relevant skill, removed obsolete maintained copies and passed affected consumer checks without a hidden fallback. This qualified cutover is distinct from downstream main-branch delivery and production adoption.
 
 ## Risks / unknowns
 
