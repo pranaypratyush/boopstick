@@ -60,7 +60,7 @@ The consumer's driver performs the action, reaches a declared checkpoint and est
 
 Each collector must establish subject identity, coordinate space, units, origin, density/font scale where relevant, collection interval and scope completeness. Do not confuse collection interval with freshness relative to the current run. Bind captures to candidate, scenario, fixture, environment and attempt; declared metadata is not attestation.
 
-The accepted incoming candidate admits direct DOM border-box observations through `web-dom-border-box` under exact contract `"3.1"`; the earlier no-browser-provider snapshot is obsolete. Direct DOM acquisition must not be labelled as RN measurement or synthetic evidence. Provider admission and upstream browser evidence alone do not qualify a collector; the neutral browser trial has its own approved scope and executed independent qualification, limited as stated above. Android and broader platforms still need their own approved collection and executed qualification. Initial native qualification is Android; iOS support requires its own later scope, hardware and executed evidence, and is not an implied release claim.
+The accepted incoming candidate admits direct DOM border-box observations through `web-dom-border-box` under exact contract `"3.1"`; the earlier no-browser-provider snapshot is obsolete. Direct DOM acquisition must not be labelled as RN measurement or synthetic evidence. Provider admission and upstream browser evidence alone do not qualify a collector; the neutral browser trial has its own approved scope and executed independent qualification, limited as stated above. Additional Android observations and broader platforms need their own approved collection and executed qualification. Initial native qualification is Android; iOS support requires its own later scope, hardware and executed evidence, and is not an implied release claim.
 
 Required captures from multiple providers cannot be combined across unrelated states/attempts. Missing observations establish absence only when the required scope was completely and appropriately enumerated. Overlay/occlusion and interaction checks stay distinct from geometry; reuse existing actionability checks and do not invent a visibility certificate.
 
@@ -82,7 +82,7 @@ Retain original values, provider, subject/parent identities, units, origins, den
 
 ### Qualify collection, not a last-known sample
 
-The existing runner/collector owns scenario-specific readiness for relevant fonts, images, layout, transitions, keyboard state and animations. Collection terminates within a declared bound with qualified evidence or an explicit limitation/setup failure. Two unchanged samples or network idleness alone do not establish readiness or an atomic layout/compositor frame.
+The consumer's runner/collector must establish scenario-specific readiness for relevant fonts, images, layout, transitions, keyboard state and animations where those facts are required. Collection terminates within a declared bound with qualified evidence or an explicit limitation/setup failure. Two unchanged samples or network idleness alone do not establish readiness or an atomic layout/compositor frame.
 
 Unavailable readiness withholds affected evidence through the existing contract where representable; otherwise refuse collection or fail setup. Preserve unrelated qualified outcomes where that contract permits. Do not invent wire fields, a generic stabilizer or a claim that the pure comparator observed readiness.
 
