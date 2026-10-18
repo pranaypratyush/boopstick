@@ -110,6 +110,8 @@ bun run check
 
 `check` runs 68 retained behavior cases and qualifies an actual packed artifact in fresh Node/Bun consumers: JS, declarations, CLI outcomes, license, package contents and skill-file closure. It prints retained evidence/tarball locations. This offline check is not an emulator/browser run or independent skill review.
 
+The `Core and package` GitHub Actions job runs these commands on pull requests and `main`, with pinned Node/Bun and read-only repository permissions. It does not start browsers or emulators, publish packages, or replace consumer qualification.
+
 The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/prepare/boopstick-extraction-readiness/plans/extract-boopstick.md) retains the detailed executed results, failures and outstanding gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/prepare/boopstick-extraction-readiness/specs/boopstick.md) defines the full RNTL/browser/Android target. Separate proposal PRs are not silently adopted.
 
 ## License
