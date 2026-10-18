@@ -4,6 +4,13 @@
   "private": true,
   "description": "Pure comparison of explicit UI obligations against declared observations",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pranaypratyush/boopstick.git"
+  },
+  "homepage": "https://github.com/pranaypratyush/boopstick#readme",
+  "bugs": { "url": "https://github.com/pranaypratyush/boopstick/issues" },
+  "keywords": ["ui-testing", "layout", "react-native", "playwright", "agent-skills"],
   "type": "module",
   "engines": { "node": ">=24", "bun": ">=1.4.3" },
   "packageManager": "bun@1.4.3",

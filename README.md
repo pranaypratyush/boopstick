@@ -2,85 +2,116 @@
 
 A poking stick for overconfident agents.
 
-Boopstick checks explicit UI obligations against supplied observations. It is not artificial vision and does not certify an entire UI. The offline implementation, bounded ordinary-runner/synthetic examples and bounded real-browser trial are independently qualified and parent accepted; Android runtime qualification, registry release and consumer cutover are not claimed.
+Boopstick checks explicit UI obligations against supplied observations: sizes, gaps, alignment, containment, overlap, presence and semantic text. It catches predictable mistakes without pretending to give an agent vision. Keep your existing test runner and interaction tools; each obligation can be an ordinary, independently selectable test.
 
-## Core and contract
+**Status:** the offline package, RNTL/Jest and Vitest recipes, and bounded Playwright browser trial have independent qualification. Android runtime qualification is incomplete. No npm release or active-consumer cutover is claimed.
 
-The dependency-free ESM library exports `compare(request, capture)` and `canonicalReport(report)`, with public `Report`, `ReportStatus` and `Outcome` types. Importing the core does not load CLI, test-runner or collection code.
+## Try it from source
 
-Read the [canonical exact-3.1 contract](skills/boopstick/references/contract.md) before authoring inputs: request schema 3, capture schema 2, report version 3. Exact `3.0` is refused. `web-dom-border-box` is admitted, but its name and declared provenance do not qualify a collector or attest loaded code. Synthetic, browser/native layout, accessibility, painted pixels and actionability remain different evidence.
+Use Bun >=1.4.3 and supported Node LTS >=24. The development dependencies are pinned; the distributed ESM library has no runtime dependencies. Until the first release, use the public implementation branch:
 
-For a consumer supplied with an approved local packed artifact:
+```sh
+git clone --branch prepare/boopstick-extraction-readiness https://github.com/pranaypratyush/boopstick.git
+cd boopstick
+bun install --frozen-lockfile --ignore-scripts
+bun run build
+bun pm pack --ignore-scripts --filename boopstick-0.0.0.tgz
+```
+
+In a separate consumer directory, install that local tarball with `bun add --ignore-scripts /absolute/path/to/boopstick-0.0.0.tgz`. No private checkout, TypeScript loader, browser or emulator is needed for the core. The package remains `private: true` until release qualification and authorization are complete; `bun add boopstick` is not yet an available registry-installation path.
+
+Save this as `demo.mjs` in the consumer, then run `node demo.mjs`:
 
 ```js
-import { readFileSync } from "node:fs";
-import { compare, canonicalReport } from "boopstick";
+import { createHash } from "node:crypto";
+import { compare } from "boopstick";
 
-const request = JSON.parse(readFileSync("request.json", "utf8"));
-const capture = JSON.parse(readFileSync("capture.json", "utf8"));
-const report = compare(request, capture);
-console.log(canonicalReport(report));
+// Hand-authored synthetic observations, not browser or native measurements.
+const fixture = {
+  id: "button-label",
+  sha256: createHash("sha256").update("Continue").digest("hex"),
+};
+const scenario = { id: "button", checkpoint: "ready" };
+const environment = { platform: "offline", density: 1, fontScale: 1, direction: "ltr" };
+const geometry = { kind: "layout", provider: "synthetic", frame: "window", unit: "dp", spaceId: "demo" };
+const request = {
+  schemaVersion: 3, contractVersion: "3.1", requestId: "button-height",
+  claim: { kind: "qualification", expectationSource: { ref: "independently-authored-48dp-policy" } },
+  scenario,
+  requiredIdentity: { candidate: "demo", fixture, environment },
+  subjects: [{ ...geometry, id: "button", key: "button", match: "one" }],
+  assertions: [{ id: "height", rule: "metric", target: "button", metric: "height", comparison: "eq", value: 48, tolerance: 0 }],
+};
+const capture = {
+  schemaVersion: 2, contractVersion: "3.1", captureId: "authored-demo",
+  origin: "synthetic", provider: "synthetic",
+  collector: {
+    id: "hand-authored-demo",
+    sha256: createHash("sha256").update("Boopstick synthetic quickstart v1").digest("hex"),
+  },
+  scenario, candidate: { buildId: "demo" }, fixture, environment,
+  epoch: { id: "demo", startedAt: 0, endedAt: 1, steady: true },
+  coverage: [], rawEvidence: [],
+  elements: [{ ...geometry, key: "button", rect: { x: 0, y: 0, width: 120, height: 47 } }],
+};
+
+console.log(compare(request, capture).outcomes[0]); // fail: expected 48, measured 47
+capture.elements[0].rect.height = 48;
+console.log(compare(request, capture).outcomes[0]); // pass
+capture.elements = [];
+console.log(compare(request, capture).outcomes[0]); // not_measured: missing-fact
 ```
 
-`pass`, `fail` and `not_measured` are distinct; malformed requests/captures have admission-error statuses. A passing sibling outcome does not discharge an unmeasured obligation. Keep expectations independently justified and evaluate the intact request before selecting a unique outcome by assertion ID.
+The expectation stays fixed while the observation changes. Missing evidence is not zero, absence, a skip, or a passing result. These synthetic inputs demonstrate the comparator only; they do not establish a real UI's geometry.
 
-## Offline CLI
+## API and CLI
 
-The built command accepts only `boopstick <request.json> <capture.json>` or `boopstick --help`. In a local checkout after building:
+The public functions are `compare(request, capture)` and `canonicalReport(report)`; TypeScript consumers can import `Report`, `ReportStatus` and `Outcome`. Importing the core does not load CLI, runner or collector code.
+
+Read the bundled [contract](skills/boopstick/references/contract.md) for exact fields, defaults and rules: contract **3.1**, request schema **3**, capture schema **2**, report version **3**. Other versions, including exact `3.0`, are refused. Invalid input produces `invalid_request` or `invalid_capture`, distinct from `fail` and `not_measured`.
+
+For request/capture JSON files, use the installed CLI:
 
 ```sh
-node dist/cli.js request.json capture.json
-node dist/cli.js --help
+./node_modules/.bin/boopstick request.json capture.json
+./node_modules/.bin/boopstick --help
 ```
 
-Comparator results are canonical JSON plus one newline on stdout. Exit 0 means all obligations pass; exit 1 means measured failure or `not_measured`; exit 2 means invalid request/capture or an operational error. Read/parse/internal errors use stderr without a fabricated report; help exits 0. There is no stdin, watch, daemon, retry, browser or native collection mode.
+Comparator reports are canonical JSON plus one newline on stdout. Exit **0** means all obligations pass; **1** means measured failure or `not_measured`; **2** means invalid input or an operational error. Read/parse/internal failures use stderr without a fabricated report. There is no stdin, watch, daemon, retry or collection mode.
 
-## Local development and qualification
+## Use the runner you already have
 
-Use Bun 1.4.3 or newer and supported Node LTS 24 or newer. Development dependencies are pinned; the distributed runtime has none. Run only after implementation edits settle:
+| Context | Qualified role | Evidence boundary |
+|---|---|---|
+| RNTL + Jest | Real component interaction, existing matchers and supplied synthetic comparator fixtures | RNTL does not measure native layout, clipping or touch regions. |
+| Vitest | Named comparator cases, local filtering and complete-result reconciliation | A filtered or skipped green run cannot approve the full declared matrix. |
+| Playwright Test | Actual interaction and DOM border boxes at two viewport sizes in the bounded specimen | Browser geometry does not prove actionability or native behavior. |
+| Android emulator | Original RN specimen and native qualification work in progress | Not yet a qualified integration; build success is not measurement acceptance. |
+
+The [optional examples](https://github.com/pranaypratyush/boopstick/tree/prepare/boopstick-extraction-readiness/examples) use existing runner hooks, reports and filtering. They are repository examples, not core dependencies or files in the package archive. RNTL/Jest and Vitest were exercised on Node 24.21.0/Bun 1.4.3; the browser trial used Playwright Test 1.64.1/Chromium 156.0.8078.4 on CachyOS. These are bounded tested combinations, not blanket platform support.
+
+Register cases from your declarations before collection, evaluate the intact request, then select exactly one outcome by assertion ID. A failing sibling must not fail a passing case solely through aggregate status. Full acceptance must account for every required case; invalid, missing, skipped or expected-failing obligations cannot satisfy it. The examples demonstrate the accounting without adding a new runner, matcher framework or test inventory.
+
+Boopstick does not collect screenshots, control devices, infer expectations or certify a whole interface. Keep visual, accessibility and actionability checks where those claims require them. Provider names and matching metadata are not loaded-code attestation.
+
+## Agent skill
+
+Copy the entire bundled `skills/boopstick` directory into your agent's supported skill location, including its two references. The [skill](skills/boopstick/SKILL.md) teaches expectation authoring, evidence selection, refusal interpretation and ordinary-test accounting. It is agent-neutral and does not require an orchestration framework or private tooling. Installing it grants no device/data access or release authority.
+
+## Develop and verify
+
+With supported Node LTS first on `PATH`, after edits settle:
 
 ```sh
-bun install --frozen-lockfile --ignore-scripts
 bun run typecheck
 bun run build
 bun run check
 ```
 
-Run these with the supported Node LTS binary first on `PATH`; the package qualification rejects non-LTS Node. `check` runs all 68 retained behavior cases, then packs a real local artifact and exercises fresh Node/Bun consumers, public declarations, CLI outcomes and skill-file closure. It prints the retained tarball/evidence location. Failed package attempts are retained, not replaced with success assertions. This offline check does not establish fresh independent skill consumption or any platform integration. See the plan for executed results and remaining gates.
+`check` runs 68 retained behavior cases and qualifies an actual packed artifact in fresh Node/Bun consumers: JS, declarations, CLI outcomes, license, package contents and skill-file closure. It prints retained evidence/tarball locations. This offline check is not an emulator/browser run or independent skill review.
 
-No registry installation command is advertised: the package is `private: true` and no registry release is authorized. Source/API comparison checks and independent review remain part of delivery, not implied by creating files.
+The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/prepare/boopstick-extraction-readiness/plans/extract-boopstick.md) retains the detailed executed results, failures and outstanding gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/prepare/boopstick-extraction-readiness/specs/boopstick.md) defines the full RNTL/browser/Android target. Separate proposal PRs are not silently adopted.
 
-## Ordinary-runner examples
+## License
 
-The optional [Vitest and RNTL/Jest consumers](examples/README.md) install a caller-supplied packed artifact into separate pinned dev closures. Local qualification passed on Node **24.21.0 LTS** and Bun **1.4.3**: full and individual named cases, real skipped/expected-failing cases, measured mismatch, missing observation and request/capture admission failures. Exact-ID reconciliation refuses partial or wrongly bound evidence even when the runner is green; the original campaign rejected 23 labelled report counterfactuals per consumer.
-
-RNTL exercises an actual awaited interaction with existing matchers and explicitly supplied synthetic layout events, not native geometry. Its native Node ESM recipe uses queries returned by `await render(...)`, avoiding a stale named CJS `screen` export. The initial integration failure and affected-only repair rerun are retained. General independent Phase C verification passed; supplemental probes then found unknown aggregate statuses and missing/nonboolean Jest `failing` flags were accepted. The bounded repair rejected 24 Vitest/26 Jest counterfactuals and replayed all 18 retained real inputs offline without changing their dispositions or losing diagnostics. Targeted independent correction verification passed with both findings closed and no new findings; parent accepted bounded Phase C. This complements the prior real-run proof, not a fresh runner campaign; these Phase C results do not qualify browser/Android collection.
-
-## Bounded real-browser trial
-
-The optional [Playwright browser example](examples/browser/README.md) uses an original local specimen, Playwright Test **1.64.1** and Chromium headless shell **156.0.8078.4**, on Node **24.21.0 LTS** / Bun **1.4.3**. Parent accepted independent qualification of two viewports, actual interaction, fractional DOM border boxes, defect/repair, missing/absence/zero/duplicate observations, overlay/actionability separation and owned teardown. This is a CachyOS-specific trial, not official distro certification or an arbitrary-page collector.
-
-Independent review found raw-file digest mismatches; the correction's affected full run passed **12 tests**, **26/26** raw-byte references, **26/26** attached copies and **32/32** reference occurrences including labelled counterfactuals. Whitespace tamper, missing files and self-consistent observation substitution refused. Independent verification closed the finding with no new findings; historical failures and earlier selected/setup receipts remain unchanged, not retroactively byte-correct. The accepted packed artifact is unchanged and does not include the new repository examples/docs. No native, registry-release or cutover claim follows.
-
-## Android build and incomplete native qualification
-
-The optional [neutral Android specimen](examples/android/README.md) has parent-accepted diagnostic build preparation, not Android runtime qualification. One explicitly approved 1800-second resumption passed in 128.052 seconds on Node 24.21.0/Bun 1.4.3/JDK 17 with verified owned temporary paths and unchanged pins. Independent Spec/APK file inspection and separate Standards/rights review passed; neither independently rebuilt or launched the app. The initial 720-second timeout and shared-temp-cache limitation remain historical, not retroactively qualified.
-
-The historical bundled x86_64 APK and its evidence remain retained. A separately approved changed-source native consumer now compiles: its first build passed in **60.250 seconds**, and the APK was installed on a fresh owned API35 emulator. The first finite campaign stopped before app interaction/collection because overlay denial readback returned `No operations` / `Default mode: default`, not the required explicit denial. At that first stop, no native measurements or ordinary cases had run; independent runtime acceptance remains pending. Observed build/emulator processes exited and their owned IPv4/IPv6 control ports refused connections; shared ADB was not stopped. Template-derived boilerplate retains its MIT notice separately from the original Apache-2.0 specimen.
-
-One separately authorized corrected campaign passed UID-denial readback and actual initial-screen assertions, then Maestro2.11 rejected an absolute screenshot filename before the toggle. The host then supplied a relative screenshot basename under Maestro's artifact folder; at that checkpoint only local path/syntax checks covered the repair. A retained failure screenshot shows `Mode: valid`, `State: off` and capture waiting for the toggle. At that checkpoint all five acquisition modes and fifteen ordinary native cases were incomplete; independent runtime acceptance remains pending.
-
-The separately authorized **third qualifier invocation** proved real valid-mode toggle/export and one retained RN-window receipt: width **200.38095092773438dp**, height **48dp**, density **2.625**, coherent7ms interval; the canonical width/height report passed. The defect driver flow also passed through `Capture: exported`, but explicit ADB target loss prevented host receipt acceptance; no defect numeric verdict is claimed. A subsequent selected replay passed **valid width** with14 skipped cases and correctly failed full-accounting acceptance. Only1/5 acquisitions has a retained verified receipt; repair/missing/absence and full15-case acceptance remain incomplete. Owned teardown passed via process fallback; transport disappearance remains unexplained, and no fourth invocation or independent acceptance is claimed.
-
-## Skill, provenance and remaining scope
-
-The [agent-neutral skill](skills/boopstick/SKILL.md) carries its own contract and evidence references; copy its entire directory, not only the entrypoint. Skill use grants no device/data access, installation or release authority.
-
-- [Accepted behavior and support boundaries](specs/boopstick.md)
-- [Implementation plan and qualification gates](plans/extract-boopstick.md)
-- [Cleared content identities and derivations](docs/provenance.md)
-- [Apache-2.0 license](LICENSE)
-
-The owner approved redistribution of selected owned comparator code, independent fixtures and generic prose under Apache-2.0; parent accepted the audited selection and exclusions. Uncleared third-party material, private application assets/history and machine receipts are not distribution inputs. New contrary rights findings hold or exclude affected material.
-
-Bounded Vitest/RNTL ordinary-test accounting is not live UI acceptance. The separately accepted browser trial qualifies only its stated specimen/host obligations; Android runtime qualification remains outstanding. New collection scopes, source/target merges, registry release and active-consumer cutover retain separate approval gates. PR2/3 amendments are not adopted by this extraction.
+[Apache-2.0](LICENSE). [Provenance](docs/provenance.md) identifies the cleared source contributions and transformations. Private application assets/history and unrelated orchestration are excluded. Template-derived code in the optional Android example retains its separate MIT notice.
