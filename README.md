@@ -110,6 +110,8 @@ The `Core and package` GitHub Actions job runs these commands on pull requests a
 
 The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/plans/extract-boopstick.md) retains detailed executed results, failures and remaining migration gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/specs/boopstick.md) defines the RNTL/browser/Android target. Separate proposal PRs are not silently adopted.
 
+For experiment questions, failed approaches, corrections and lessons, use the [experiment knowledge base](docs/experiments/README.md); its release-status note distinguishes completed 0.1.0 publication/onboarding from the plan's historical pending checklist.
+
 ## License
 
 [Apache-2.0](LICENSE). [Provenance](docs/provenance.md) identifies the cleared source contributions and transformations. Private application assets/history and unrelated orchestration are excluded. Template-derived code in the optional Android example retains its separate MIT notice.
