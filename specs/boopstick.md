@@ -1,6 +1,6 @@
 # Boopstick: accepted behavior and qualification targets
 
-**Current status:** the core/skill, ordinary RNTL/Jest and Vitest recipes, bounded browser path and bounded Android path have independent verification and parent acceptance. Android retained five actual acquisitions and passed all 15 ordinary cases; selected green feedback was refused as complete acceptance. Versioned release and inventoried consumer cutover are authorized but not yet completed. The old native transport-loss cause remains unresolved; no broader platform/reliability claim follows.
+**Current status:** the core/skill, ordinary RNTL/Jest and Vitest recipes, bounded browser path and bounded Android path have independent verification and parent acceptance. Android retained five actual acquisitions and passed all 15 ordinary cases; selected green feedback was refused as complete acceptance. The 0.1.0 package and skill are published with independent public-registry onboarding, and the approved inventoried consumer/skill cutover is complete within its qualified scope; hosted-CI success, original UV2–UV4 obligations and production adoption remain out of scope. The old native transport-loss cause remains unresolved; no broader platform/reliability claim follows.
 
 ## Qualification history
 
@@ -14,7 +14,9 @@
 
 A separately authorized corrected native campaign passed explicit UID overlay denial and initial valid/off screen assertions, then stopped at Maestro2.11's screenshot-path containment guard before the toggle. A relative screenshot basename repaired the host parameter; at that checkpoint only local path/syntax checks covered the repair. The retained initial-state error screenshot is not native geometry or export evidence. That checkpoint claimed no five-mode acquisition, fifteen-case run or independent runtime acceptance.
 
-The separately authorized third qualifier invocation completed actual valid-mode toggle/export and one retained, byte-verified RN-window receipt whose width/height report passed. Defect-mode driver interaction/export passed, but explicit target loss prevented host receipt acceptance, so no numeric defect result is claimed. An affected-only selected **valid width** replay passed with14 skipped siblings and full-accounting refusal. Only1/5 acquisitions has a retained verified receipt; repair/missing/absence, full15-case acceptance and independent runtime qualification remain pending. Transport disappearance is not explained or fixed; no fourth invocation, rebuild or release approval follows.
+The separately authorized third qualifier invocation completed actual valid-mode toggle/export and one retained, byte-verified RN-window receipt whose width/height report passed. Defect-mode driver interaction/export passed, but explicit target loss prevented host receipt acceptance, so no numeric defect result is claimed. Only1/5 acquisitions had a retained verified receipt at that checkpoint; the later instrumented invocation (recorded below) subsequently completed five-acquisition/fifteen-case qualification. Transport disappearance was not explained or fixed.
+
+**Post-tag publication and cutover:** after parent acceptance of all five accepted contexts, `v0.1.0` was tagged and the package published to npm; an anonymous fresh public-registry install independently matched the accepted archive (SHA256 `ae637cf7a63d1d9f4cf72edfd43f3b0a4ad6260ef36e46b53ba969a90e491ae9`) with all21 files, and passed fresh public-registry onboarding for API, CLI, declarations, README and the bundled skill. The approved inventoried caller/skill cutover completed within its qualified scope. Hosted-CI success, original UV2–UV4 method obligations and production adoption are not claimed.
 
 ## Purpose and principles
 
