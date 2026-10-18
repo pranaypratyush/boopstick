@@ -1,0 +1,42 @@
+appId: org.boopstick.specimen
+---
+# Host force-stops and launches the fresh capture URL before this flow.
+- launchApp:
+    stopApp: false
+    clearState: false
+    permissions: {}
+- assertVisible:
+    id: mode-label
+    text: 'Mode: ${MODE}'
+- assertVisible:
+    id: state-label
+    text: 'State: off'
+- takeScreenshot: ${SCREENSHOT}-before
+- tapOn:
+    id: toggle-button
+- assertVisible:
+    id: state-label
+    text: 'State: on'
+- runFlow:
+    when:
+      true: ${MODE == 'absent'}
+    commands:
+      - assertNotVisible:
+          id: geometry-subject
+- runFlow:
+    when:
+      true: ${MODE != 'absent'}
+    commands:
+      - assertVisible:
+          id: geometry-subject
+- assertVisible:
+    id: capture-status
+    text: 'Capture: ready'
+- assertVisible:
+    id: capture-button
+- tapOn:
+    id: capture-button
+- assertVisible:
+    id: capture-status
+    text: 'Capture: exported'
+- takeScreenshot: ${SCREENSHOT}
