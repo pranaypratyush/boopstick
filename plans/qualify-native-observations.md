@@ -1,5 +1,8 @@
 ---
-status: in-progress
+status: blocked
+awaits:
+  - Diagnose retained post-driver target loss; no further native invocation is authorized
+  - Complete and independently accept all six Increment1 acquisitions before later increments
 depends: []
 specs:
   - specs/boopstick.md
@@ -9,7 +12,7 @@ specs:
 
 ## Scope
 
-Carry the remaining useful intent of [PR #2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR #3](https://github.com/pranaypratyush/boopstick/pull/3) onto the released Boopstick baseline. Increment 1 implementation and local checks are approved. After local checks and independent implementation review pass, one APK build (maximum 1800 seconds) and one qualification invocation (maximum 1800 seconds, boot maximum 300 seconds, six acquisitions) are authorized. Reuse existing tools; no SDK installation, automatic rebuild/retry, retargeting or deadline extension. Preserve shared ADB and historical attempts; clean up only owned resources. This grant does not authorize merges, package releases or later increments. Leave both original proposals open and linked until their disposition is explicitly approved.
+Carry the remaining useful intent of [PR #2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR #3](https://github.com/pranaypratyush/boopstick/pull/3) onto the released Boopstick baseline. Increment1 implementation, host checks and independent source review are complete; native qualification remains **1/6 accepted acquisitions**, not complete. Both original and separately authorized continuation build/native invocations are spent. The build continuation passed; the disk-backed native continuation retained one control receipt plus a second unqualified export, then stopped on target loss. No further build, native invocation, retry, reconnect, retarget or deadline extension is authorized. Shared ADB and historical attempts remain preserved. This grant never authorized merges, releases or later increments. Keep both original proposals open and linked; do not merge their stale stacks.
 
 Baseline: main `96d54567cb23efae4e6600e9a06ac7138418368f`, including released0.1.0 and its indexed [native findings](../docs/experiments/android.md). The [completed extraction plan](extract-boopstick.md) is unchanged. Extraction, scoped rights, publication and inventoried cutover are not new prerequisites. New or contradictory rights evidence still holds the affected material; only original/licensed neutral fixtures may be added.
 
@@ -25,13 +28,13 @@ Improve one optional Android example through three bounded increments. Keep the 
 
 ### Existing capability to preserve
 
-The [app](../examples/android/App.js) already measures a root and one geometry subject using `measureInWindow`; `onLayout` marks readiness/generation. The [collector](../examples/android/collector.mjs) persists ingress before acknowledgment, binds and verifies raw/UI evidence, constructs one geometry subject and evaluates it externally. Five acquisitions/15 cases established valid, defect, repair, missing and absence behavior. They did not establish three repeated controls, multiple subjects, text callbacks or the expanded matrices below.
+The historical single-subject [app and handoff at v0.1.0](https://github.com/pranaypratyush/boopstick/tree/v0.1.0/examples/android) measured a root and one geometry subject using `measureInWindow`; five acquisitions/15 cases established valid, defect, repair, missing and absence behavior. The current [app](../examples/android/App.js) and [collector](../examples/android/collector.mjs) implement the expanded seam with durable ingress and external comparison, but have only one accepted native control. Historical qualification does not establish the expanded matrix, text callbacks or later discriminators.
 
 Reuse that seam. Independent relationship expectations, fractional arithmetic, logical scopes and canonical diagnostics already exist in the core/skill. Browser evidence for related discriminators is useful context, not native acceptance. Source inspection or an admitted provider name is not executed acquisition qualification.
 
 ### Increment 1 — two subjects and relationship detection
 
-This is the first implementation unit after approval; later increments remain held until it has an accepted, integrated result.
+Implementation is present and independently source-reviewed. Native collection is incomplete, so this unit is not accepted for expansion; later increments remain held. [AND-10](../docs/experiments/android.md#and-10--two-subject-relationships-and-an-incomplete-native-continuation) records the exact partial result and preserved failures.
 
 1. Extend the same original specimen and existing raw handoff to two explicitly bound geometry subjects, such as a text block and its action. Keep root measurements and `measureInWindow` window/dp semantics; expose the observed root as a declared reference subject when containment needs it. Reuse the actual nodes, generation/ref/environment guards, durable receiver and external comparator. No `onTextLayout`, new callback provider or recursive parent-coordinate converter is needed for this unit.
 2. Before collection, freeze one requirement/request with independently justified gap, alignment, containment and minimum-size obligations, subject identities, scenario variants and tolerances. Reuse ordinary scenario declarations as the inventory. Pairwise rules require eligible observations in the same declared/observed space; missing siblings must not become zero-sized geometry.
@@ -80,18 +83,20 @@ Update affected example guidance and the existing experiment knowledge base at i
 
 ## Validation
 
-All boxes are future implementation/qualification criteria, not results of this documentation PR. Passing Increment1 does not complete Increments2/3.
+These remain implementation/qualification criteria, not a blanket acceptance checklist. Host checks and one actual control receipt support the two completed seam-level rows; native matrix criteria remain unchecked. Passing Increment1 would still not complete Increments2/3.
 
-- [ ] Increment1 multi-subject window/dp handoff preserves identity, raw floats, common space and durable ingress/receipt verification without changing the core contract or adding a runner/driver.
+- [x] Increment1 multi-subject window/dp handoff preserves identity, raw floats, common space and durable ingress/receipt verification without changing the core contract or adding a runner/driver. Host checks and one accepted control demonstrate this bounded seam, not the six-mode matrix.
 - [ ] Three control acquisitions, actual permitted reflow, seeded gap failure and fresh restoration retain the declared numerical outcomes and compositor originals with independent unchanged expectations.
 - [ ] Ordinary cases run singly and together; complete accounting refuses missing/skipped/duplicate/conflicting/stale obligations. Numerical findings replay identically twice from the same retained bytes.
-- [ ] Missing/duplicate identities, wrong checkpoints/kinds and invalid conversions refuse or withhold according to the contract; no zero/absence substitution, heuristic matching or manufactured wire semantics.
+- [x] Missing/duplicate identities, wrong checkpoints/kinds and invalid conversions refuse or withhold according to the contract; no zero/absence substitution, heuristic matching or manufactured wire semantics. Host fixtures and labelled offline controls over the retained native receipt passed; these are not additional device acquisitions.
 - [ ] Increment2 repeated instances, qualified public callback observations, intentional media absence and actual disclosure expand/collapse preserve distinct subject/provider/state meanings.
 - [ ] Square-media and one-line defects plus restoration retain measured failures or explicit unsupported outcomes and screenshot counterexamples; unsupported is never passing UI acceptance or a text-fit claim.
 - [ ] Disabled observation preserves ordinary rendering/interaction and production entry behavior; no private APIs, copied component JSX, global flattening changes or mandatory driver migration.
 - [ ] Increment3 readiness success/exhaustion, fractional distinction/representability limit, displaced placement, outsider scope and covered-action counterexample have separately attributable outcomes; synthetic/browser results do not qualify native gaps.
 - [ ] Diagnostics preserve canonical assertion/subject identities, available reference anchors, expected/measured/deviation values and refusal reasons without a second evaluator.
 - [ ] Each increment has its approved bounded attempt, preserved failures/provenance, verified owned teardown, neutral reproduction and honest example/KB updates; unsupported targets remain explicit rather than silently removed.
+
+Actual evidence: host checks6/6 on each pinned Node/Bun runtime; changed-source build75.854s; disk-backed boot57.238s; one accepted control with eight passing comparator outcomes. `control-2` raw/pending survived export acknowledgment but target loss prevented its receipt. Selected ordinary feedback1-pass/59-skipped was refused as complete; nine offline/canonical controls passed with51 skipped, and two canonical replays matched for the sole accepted receipt. No native reflow, spacing-defect, repair, control-variation or full60-case result is claimed. Immediate offline cleanup and later empty-device/closed-endpoint readback are separate observations. Details: [example](../examples/android/README.md) and [AND-10](../docs/experiments/android.md#and-10--two-subject-relationships-and-an-incomplete-native-continuation).
 
 ## Risks / unknowns
 
@@ -117,7 +122,7 @@ All boxes are future implementation/qualification criteria, not results of this 
 | #3 readiness exhaustion, fractional precision, displaced origin/scope and covered action | Explicit Increment3 matrix; existing browser/synthetic proof is not native proof. |
 | Both drafts' extraction-era blocked status/awaits | Obsolete for the completed release. Replaced only by this amendment's own approval/implementation/collection holds. |
 
-The installed plan reader currently warns that the frozen extraction plan's `completed` status is unknown and lists that old plan as ready. This is a pre-existing parser/status mismatch, not new extraction work or authority to execute it. Preserve that historical file; this plan uses supported `blocked` plus explicit `awaits`, and its own entry must remain non-ready until approved prerequisites clear. Do not treat the aggregate reader's legacy ready count as a dispatch grant.
+The installed plan reader historically warns that the frozen extraction plan's `completed` status is unknown and lists that old plan as ready. Preserve that parser/status mismatch rather than reopening extraction. This plan is now `blocked` with explicit native-qualification awaits because its authorized attempts are spent and the expanded matrix is incomplete. Neither the aggregate reader's legacy ready count nor historical acceptance is dispatch authority.
 
 ## Follow-ups
 

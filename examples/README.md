@@ -6,11 +6,13 @@ The separately qualified [browser trial](browser/README.md) uses Playwright Test
 
 ## Bounded Android consumer
 
-The [Android specimen](android/README.md) has independent lifecycle and semantics verification plus parent acceptance. Five actual toggle/export acquisitions cover valid, real defect, repair, withheld measurement and committed absence. The authored47dp defect measured **46.857147216796875dp** and failed the fixed48±0.5dp height policy; valid/repair measured48dp, missing remained `not_measured`, and absence passed. Width and common-frame origin checks remained intact.
+The historical single-subject [Android specimen](android/README.md#accepted-native-result) has independent lifecycle and semantics verification plus parent acceptance. Five actual toggle/export acquisitions covered valid, real defect, repair, withheld measurement and committed absence. The authored47dp defect measured **46.857147216796875dp** and failed the fixed48±0.5dp height policy; valid/repair measured48dp, missing remained `not_measured`, and absence passed. Width and common-frame origin checks remained intact.
 
 All **15 ordinary cases** passed. Independent offline replay reproduced that result and a selected **1-pass/14-skipped** invocation that full accounting correctly rejected; it did not repeat the native campaign. Raw/pending/receipt/UI bytes were independently checked. Owned processes/listeners were gone and the later device list was empty; shared ADB remained running.
 
 The Android README retains the earlier failed campaigns, APK/source bindings, MIT/Apache notices, host-restricted qualification recipe and measured support limits. The old transport-loss cause remains unresolved. This is one static RN0.88/API35 x86_64 specimen at density2.625/fontScale1/LTR, not physical-device/iOS support, a portable device manager or loaded-code attestation. APKs, keys, caches and private receipts remain excluded from distribution.
+
+The current two-subject Increment1 is **implemented but not fully qualified**. Its changed-source build and Node/Bun host checks passed; the native continuation retained one accepted control receipt and a second unqualified export before target loss. The60-case matrix is incomplete: selected `control-1 gap` passed1 with59 skipped and was correctly refused as full acceptance. No native narrow/defect/repair result is claimed. See the [current Android status](android/README.md) and [AND-10](../docs/experiments/android.md#and-10--two-subject-relationships-and-an-incomplete-native-continuation); historical15-case acceptance does not qualify this changed source.
 
 ## Ordinary Vitest/RNTL consumers
 
