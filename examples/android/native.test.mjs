@@ -3,84 +3,140 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'vitest';
 import { compare, canonicalReport } from 'boopstick';
-import { caseNames, makeRequest, selectOutcome, policy } from './scenario.mjs';
-import { verifyReceipt, startReceiver } from './collector.mjs';
+import { caseNames, modes, makeRequest, selectOutcome, policy, references } from './scenario.mjs';
+import { verifyReceipt } from './collector.mjs';
 
 const directory = process.env.BOOPSTICK_NATIVE_EVIDENCE;
 if (!directory) throw new Error('Actual native evidence directory required');
 const binding = JSON.parse(readFileSync(join(directory, 'binding.json')));
 const load = mode => {
   const receipt = JSON.parse(readFileSync(join(directory, `${mode}-receipt.json`)));
-  verifyReceipt(receipt, binding, directory);
+  verifyReceipt(receipt, binding, directory, mode);
+  const launch = JSON.parse(readFileSync(join(directory, `${mode}-launch-url.json`)));
+  assert.equal(launch.mode, mode); assert.equal(receipt.attemptId, launch.attemptId);
   return receipt;
 };
-const outcomes = (mode, statuses) => {
+const request = makeRequest(binding);
+const cases = Object.fromEntries(modes.flatMap(mode => request.assertions.map(({ id }) => [`${mode} ${id}`, () => {
   const receipt = load(mode);
-  assert.deepEqual(receipt.request, makeRequest(binding, mode === 'absent'));
-  for (const [id, status] of Object.entries(statuses)) assert.equal(selectOutcome(receipt.report, id).status, status);
+  assert.deepEqual(receipt.request, request);
+  assert.equal(selectOutcome(receipt.report, id).status, mode === 'defect' && id === 'gap' ? 'fail' : 'pass');
   return receipt;
+}])));
+const body = receipt => receipt.raw.subjects.find(subject => subject.key === 'body-subject').rect;
+const offline = (mutate, check) => {
+  const receipt = load('control-1');
+  const capture = structuredClone(receipt.capture);
+  mutate(capture);
+  const report = compare(receipt.request, capture);
+  check(report);
+  return { kind: 'labelled offline counterfactual over retained native evidence, not another native execution', capture, report };
 };
-const counterfactual = (mutate, reason) => {
-  const receipt = load('valid');
-  const capture = structuredClone(receipt.capture); mutate(capture);
-  const report = JSON.parse(canonicalReport(compare(receipt.request, capture)));
-  for (const id of ['width', 'height']) {
-    const outcome = selectOutcome(report, id); assert.equal(outcome.status, 'not_measured'); assert.equal(outcome.reason, reason);
+const withheld = (report, reason) => {
+  for (const { id } of request.assertions) {
+    const outcome = selectOutcome(report, id);
+    assert.equal(outcome.status, 'not_measured'); assert.equal(outcome.reason, reason);
   }
-  return { kind: 'labelled offline capture counterfactual, not another device execution', capture, report };
 };
-const cases = {
-  'valid width': () => outcomes('valid', { width: 'pass' }),
-  'valid height': () => outcomes('valid', { height: 'pass' }),
-  'defect height fails while width passes': () => outcomes('defect', { width: 'pass', height: 'fail' }),
-  'repair width': () => outcomes('repair', { width: 'pass' }),
-  'repair height': () => outcomes('repair', { height: 'pass' }),
-  'missing is unmeasured': () => {
-    const receipt = outcomes('missing', { width: 'not_measured', height: 'not_measured' });
-    assert.equal(receipt.raw.subjectMounted, true); assert.equal(receipt.raw.subject, null);
-    assert.ok(receipt.driver.subjectAbsent === false); return receipt;
+Object.assign(cases, {
+  'narrow body reflows relative to control': () => {
+    const control = load('control-1'), narrow = load('narrow');
+    assert.ok(body(narrow).width < body(control).width);
+    assert.ok(body(narrow).height > body(control).height);
+    assert.ok(Math.abs(body(control).width - 280) <= 0.5);
+    assert.ok(Math.abs(body(narrow).width - 180) <= 0.5);
+    return { kind: 'relative geometry from two separate native acquisitions; no line-count inference', control: control.attemptId, narrow: narrow.attemptId };
   },
-  'qualified absence': () => {
-    const receipt = outcomes('absent', { absent: 'pass' });
-    assert.equal(receipt.raw.subjectMounted, false); assert.equal(receipt.driver.subjectAbsent, true);
-    assert.equal(receipt.capture.coverage[0].qualified, true); return receipt;
+  'repair uses the independent unchanged request': () => {
+    const attempts = new Set();
+    for (const mode of modes) {
+      const receipt = load(mode);
+      assert.deepEqual(receipt.request, makeRequest(binding));
+      assert.ok(!attempts.has(receipt.attemptId), 'Distinct retained acquisitions');
+      attempts.add(receipt.attemptId);
+      if (mode === 'defect' || mode === 'repair')
+        assert.equal(selectOutcome(receipt.report, 'gap').status, mode === 'defect' ? 'fail' : 'pass');
+    }
+    return { kind: 'distinct acquisitions with the independent unchanged request' };
   },
-  'incomplete acquisition is not absence': () => {
-    const receipt = load('missing'); const request = makeRequest(binding, true);
-    const report = JSON.parse(canonicalReport(compare(request, receipt.capture)));
-    const outcome = selectOutcome(report, 'absent'); assert.equal(outcome.status, 'not_measured'); assert.equal(outcome.reason, 'incomplete-scope');
-    return { kind: 'offline presence question over actual withheld acquisition', request, report };
+  'canonical replay is deterministic': () => {
+    const receipt = load('control-1');
+    const first = canonicalReport(compare(receipt.request, receipt.capture));
+    const second = canonicalReport(compare(receipt.request, receipt.capture));
+    assert.equal(first, second); assert.equal(first, canonicalReport(receipt.report));
+    return { kind: 'two offline canonical replays of the same retained acquisition', report: JSON.parse(first) };
   },
-  'wrong candidate refused': () => counterfactual(capture => { capture.candidate.buildId = 'wrong-build'; }, 'identity-mismatch'),
-  'wrong checkpoint refused': () => counterfactual(capture => { capture.scenario.checkpoint = 'before-toggle'; }, 'identity-mismatch'),
-  'wrong environment refused': () => counterfactual(capture => { capture.environment.fontScale += 0.25; }, 'identity-mismatch'),
-  'overlong capture refused': () => counterfactual(capture => { capture.epoch.endedAt = capture.epoch.startedAt + policy.maxIntervalMs + 1; }, 'stale-epoch'),
-  'unsteady capture refused': () => counterfactual(capture => { capture.epoch.steady = false; }, 'incoherent-capture'),
-  'raw file binding enforced': () => {
-    const receipt = load('valid'); const edited = structuredClone(receipt); edited.raw.subject.width += 1;
-    assert.throws(() => verifyReceipt(edited, binding, directory), /raw file observation/);
-    const alteredRef = structuredClone(receipt); alteredRef.capture.rawEvidence[0].sha256 = '0'.repeat(64);
-    assert.throws(() => verifyReceipt(alteredRef, binding, directory), /raw file digest/);
-    return { kind: 'offline receipt tamper controls over actual persisted raw files', original: receipt.attemptId };
+  'offline missing tuple preserves independent metrics': () => offline(capture => {
+    capture.elements = capture.elements.filter(element => element.key !== 'action-subject');
+    capture.coverage[0].observed = capture.coverage[0].observed.filter(reference => reference.key !== 'action-subject');
+    capture.coverage[0].complete = false; capture.coverage[0].qualified = false;
+  }, report => {
+    for (const id of ['gap', 'alignment', 'action-contained', 'action-width', 'action-height']) {
+      const outcome = selectOutcome(report, id);
+      assert.equal(outcome.status, 'not_measured'); assert.equal(outcome.reason, 'missing-fact');
+    }
+    for (const id of ['body-contained', 'body-width', 'body-height']) assert.equal(selectOutcome(report, id).status, 'pass');
+  }),
+  'offline duplicate tuple is invalid evidence': () => offline(capture => {
+    capture.elements.push(structuredClone(capture.elements.find(element => element.key === 'action-subject')));
+  }, report => {
+    assert.equal(report.status, 'invalid_capture');
+    assert.ok(report.evidenceErrors.some(error => error.code === 'duplicate-tuple'));
+  }),
+  'offline stale capture is withheld': () => offline(capture => {
+    capture.epoch.endedAt = capture.epoch.startedAt + policy.maxIntervalMs + 1;
+  }, report => withheld(report, 'stale-epoch')),
+  'offline wrong checkpoint is withheld': () => offline(capture => {
+    capture.scenario.checkpoint = 'before-toggle';
+  }, report => withheld(report, 'identity-mismatch')),
+  'offline wrong kind is not substituted': () => offline(capture => {
+    capture.elements.find(element => element.key === 'action-subject').kind = 'accessibility';
+    capture.coverage[0].observed = capture.coverage[0].observed.filter(reference => reference.key !== 'action-subject');
+    capture.coverage[0].complete = false; capture.coverage[0].qualified = false;
+  }, report => {
+    assert.equal(selectOutcome(report, 'gap').reason, 'missing-fact');
+    assert.equal(selectOutcome(report, 'action-width').status, 'not_measured');
+    assert.equal(selectOutcome(report, 'body-width').status, 'pass');
+  }),
+  'offline wrong space withholds local relationships': () => offline(capture => {
+    capture.elements.find(element => element.key === 'action-subject').spaceId = 'another-window';
+  }, report => {
+    for (const id of ['gap', 'alignment', 'action-contained', 'action-width', 'action-height']) {
+      assert.equal(selectOutcome(report, id).status, 'not_measured');
+      assert.equal(selectOutcome(report, id).reason, 'incompatible-space');
+    }
+    assert.equal(selectOutcome(report, 'body-width').status, 'pass');
+  }),
+  'offline incomplete scope cannot prove absence': () => {
+    const receipt = load('control-1'), capture = structuredClone(receipt.capture), absence = structuredClone(receipt.request);
+    capture.elements = capture.elements.filter(element => element.key !== references.action.key);
+    capture.coverage[0].observed = capture.coverage[0].observed.filter(reference => reference.key !== references.action.key);
+    capture.coverage[0].complete = false; capture.coverage[0].qualified = false;
+    absence.assertions = [{ id: 'absent', rule: 'presence', scope: absence.scopes[0].id, target: 'action', mode: 'absent' }];
+    const report = compare(absence, capture), outcome = selectOutcome(report, 'absent');
+    assert.equal(outcome.status, 'not_measured'); assert.equal(outcome.reason, 'incomplete-scope');
+    return { kind: 'labelled offline absence question, not a native absence run', request: absence, capture, report };
   },
-  'receiver rejects stale and malformed exports': async () => {
+  'offline receipt tamper is detected': () => {
+    const receipt = load('control-1');
+    const edited = structuredClone(receipt); edited.raw.subjects[0].rect.width += 1;
+    assert.throws(() => verifyReceipt(edited, binding, directory, 'control-1'));
+    const alteredHash = structuredClone(receipt); alteredHash.capture.rawEvidence[0].sha256 = '0'.repeat(64);
+    assert.throws(() => verifyReceipt(alteredHash, binding, directory, 'control-1'));
+    const alteredReport = structuredClone(receipt); selectOutcome(alteredReport.report, 'gap').status = 'fail';
+    assert.throws(() => verifyReceipt(alteredReport, binding, directory, 'control-1'));
+    assert.throws(() => verifyReceipt(receipt, binding, directory, 'control-2'));
+    return { kind: 'labelled offline receipt/raw/hash/report tamper controls', original: receipt.attemptId };
+  },
+  'receiver retains six acquisition protocol controls': () => {
     const evidence = JSON.parse(readFileSync(join(directory, 'receiver-controls.json')));
-    assert.ok(evidence.oldAttempts.length >= 1); assert.ok(evidence.oldAttempts.every(item => item.status === 409));
-    assert.ok(evidence.duplicates.every(item => item.status === 409)); assert.equal(evidence.duplicates.length, 5);
-    assert.ok(evidence.oldAttempts.every(item => item.currentPathOldBodyStatus === 422));
-    const receiver = await startReceiver({ attemptId: 'validation-control', mode: 'valid', directory, timeoutMs: 1000 });
-    const url = `http://127.0.0.1:${receiver.port}/capture/validation-control`;
-    try {
-      const wrong = structuredClone(load('valid').raw); wrong.attemptId = 'validation-control'; wrong.mode = 'repair';
-      assert.equal((await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(wrong) })).status, 422);
-      assert.equal((await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{' })).status, 422);
-      assert.equal((await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: 'x'.repeat(65537) })).status, 413);
-      await assert.rejects(receiver.body, /deadline/);
-      await assert.rejects(fetch(url, { method: 'POST', body: '{}' }));
-    } finally { await receiver.close(); }
-    return { kind: 'actual receiver protocol requests plus replayed prior device export', ...evidence };
+    assert.equal(evidence.oldAttempts.length, modes.length - 1);
+    assert.ok(evidence.oldAttempts.every(item => item.status === 409 && item.currentPathOldBodyStatus === 422));
+    assert.equal(evidence.duplicates.length, modes.length);
+    assert.ok(evidence.duplicates.every(item => item.status === 409));
+    return { kind: 'retained receiver requests over actual prior acquisition bytes', ...evidence };
   },
-};
+});
 assert.deepEqual(Object.keys(cases), caseNames, 'Frozen ordinary case inventory');
 for (const name of caseNames) test(name, async ({ task }) => {
   task.meta.native = { binding, expectedFailure: task.fails === true, retry: task.retry ?? 0, repeats: task.repeats ?? 0 };

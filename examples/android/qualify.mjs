@@ -197,8 +197,11 @@ try {
     await device(['shell', 'uiautomator', 'dump', `/data/local/tmp/boopstick-${mode}.xml`]);
     await device(['pull', `/data/local/tmp/boopstick-${mode}.xml`, join(root, `${mode}-ui.xml`)]);
     const ui = readFileSync(join(root, `${mode}-ui.xml`), 'utf8');
-    assert.match(ui, /text="State: on"/); const subjectAbsent = !ui.includes('resource-id="geometry-subject"'); assert.equal(subjectAbsent, mode === 'absent');
-    const receipt = collect({ ...observation, binding, attemptId, mode, directory: root, driver: { attemptId, state: 'on', subjectAbsent, uiEvidence: { ref: `${mode}-ui.xml`, sha256: hash(readFileSync(join(root, `${mode}-ui.xml`))) }, kind: 'Maestro 2.11.0 plus explicit-serial UI corroboration' } });
+    assert.match(ui, /text="State: on"/);
+    assert.ok(ui.includes(`text="Mode: ${mode}"`), 'Current mode corroborated in saved UI XML');
+    const subjectKeys = ['action-subject', 'body-subject'].filter(key => ui.includes(`resource-id="${key}"`));
+    assert.deepEqual(subjectKeys, ['action-subject', 'body-subject'], 'Both mounted subjects corroborated in saved UI XML');
+    const receipt = collect({ ...observation, binding, attemptId, mode, directory: root, driver: { attemptId, state: 'on', subjectKeys, uiEvidence: { ref: `${mode}-ui.xml`, sha256: hash(readFileSync(join(root, `${mode}-ui.xml`))) }, kind: 'Maestro 2.11.0 plus explicit-serial UI corroboration' } });
     const duplicate = await fetch(`http://127.0.0.1:${receiver.port}/capture/${attemptId}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: observation.bytes });
     summary.controls.duplicates.push({ attemptId, status: duplicate.status }); assert.equal(duplicate.status, 409);
     const receiverPort = receiver.port; await receiver.close(); receiver = null; assert.ok(await refused(receiverPort), 'Receiver closed');
@@ -208,12 +211,12 @@ try {
   const cli = join(dirname(require.resolve('vitest/package.json')), 'vitest.mjs');
   for (const selected of [true, false]) {
     const label = selected ? 'selected' : 'full'; mkdirSync(join(root, label));
-    const result = await run(process.execPath, [cli, 'run', '--config', join(cwd, 'vitest.config.mjs'), ...(selected ? ['-t', '^valid width$'] : [])], { timeout: 60000, childEnv: { ...env, BOOPSTICK_NATIVE_EVIDENCE: root, BOOPSTICK_OUTPUT_DIR: join(root, label) } });
+    const result = await run(process.execPath, [cli, 'run', '--config', join(cwd, 'vitest.config.mjs'), ...(selected ? ['-t', '^control-1 gap$'] : [])], { timeout: 60000, childEnv: { ...env, BOOPSTICK_NATIVE_EVIDENCE: root, BOOPSTICK_OUTPUT_DIR: join(root, label) } });
     const report = JSON.parse(readFileSync(join(root, label, 'runner.json')));
     if (selected) {
       // Vitest includes skipped registered siblings; retain the real report and prove full accounting refuses it.
       assert.throws(() => acceptRunner(report, result.code));
-      const executed = report.testResults.flatMap(file => file.assertionResults).filter(row => row.status === 'passed'); assert.deepEqual(executed.map(row => row.title), ['valid width']);
+      const executed = report.testResults.flatMap(file => file.assertionResults).filter(row => row.status === 'passed'); assert.deepEqual(executed.map(row => row.title), ['control-1 gap']);
       summary.selected = { feedbackPassed: true, fullAcceptance: 'refused' };
     } else {
       const rows = acceptRunner(report, result.code);
@@ -221,7 +224,16 @@ try {
       summary.ordinaryCases = rows.length;
     }
   }
-  for (const mode of modes) verifyReceipt(JSON.parse(readFileSync(join(root, `${mode}-receipt.json`))), binding, root);
+  assert.equal(summary.observations.length, modes.length);
+  const verifiedAttempts = new Set();
+  for (const [index, mode] of modes.entries()) {
+    const receipt = JSON.parse(readFileSync(join(root, `${mode}-receipt.json`)));
+    verifyReceipt(receipt, binding, root, mode);
+    assert.equal(summary.observations[index].mode, mode);
+    assert.equal(receipt.attemptId, summary.observations[index].attemptId);
+    assert.ok(!verifiedAttempts.has(receipt.attemptId), 'Distinct acquired attempts');
+    verifiedAttempts.add(receipt.attemptId);
+  }
   assert.deepEqual(sourceManifest(), source, 'No mid-campaign source mutation'); summary.status = 'qualified-bounded-native-path';
 } catch (error) { summary.failure = error.stack; process.exitCode = 1; }
 finally {

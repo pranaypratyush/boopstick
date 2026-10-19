@@ -66,7 +66,7 @@ Required captures from multiple providers cannot be combined across unrelated st
 
 ## Post-release native evidence quality (proposed)
 
-This amendment carries forward [PR #2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR #3](https://github.com/pranaypratyush/boopstick/pull/3). Its [incremental qualification plan](../plans/qualify-native-observations.md) is separate from the completed extraction. The existing single-subject `measureInWindow` handoff is qualified within its recorded bounds; multiple-subject, text/media and additional native discriminators below are proposed work, not new support claims or execution permission.
+This amendment carries forward [PR #2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR #3](https://github.com/pranaypratyush/boopstick/pull/3). Its [incremental qualification plan](../plans/qualify-native-observations.md) is separate from the completed extraction. The existing single-subject `measureInWindow` handoff is qualified within its recorded bounds. Increment 1 multiple-subject implementation is approved; its one-build/one-invocation native grant is conditional on successful local checks and independent implementation review, and is not native qualification. Later text/media and additional native discriminators remain proposed work, not new support claims or execution permission.
 
 ### Bind actual nodes without changing the application
 

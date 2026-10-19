@@ -1,6 +1,7 @@
 appId: org.boopstick.specimen
 ---
 # Host force-stops and launches the fresh capture URL before this flow.
+# Every actual mode renders both subjects; the toggle action applies the variant.
 - launchApp:
     stopApp: false
     clearState: false
@@ -11,24 +12,20 @@ appId: org.boopstick.specimen
 - assertVisible:
     id: state-label
     text: 'State: off'
+- assertVisible:
+    id: body-subject
+- assertVisible:
+    id: action-subject
 - takeScreenshot: ${SCREENSHOT}-before
 - tapOn:
     id: toggle-button
 - assertVisible:
     id: state-label
     text: 'State: on'
-- runFlow:
-    when:
-      true: ${MODE == 'absent'}
-    commands:
-      - assertNotVisible:
-          id: geometry-subject
-- runFlow:
-    when:
-      true: ${MODE != 'absent'}
-    commands:
-      - assertVisible:
-          id: geometry-subject
+- assertVisible:
+    id: body-subject
+- assertVisible:
+    id: action-subject
 - assertVisible:
     id: capture-status
     text: 'Capture: ready'

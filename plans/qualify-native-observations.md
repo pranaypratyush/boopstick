@@ -1,18 +1,15 @@
 ---
-status: blocked
+status: in-progress
 depends: []
 specs:
   - specs/boopstick.md
-awaits:
-  - "Maintainer acceptance of this post-release spec/plan and explicit implementation go-ahead"
-  - "Separately approved bounded Android build/collection scope for the first increment; previous execution grants are spent"
 ---
 
 # Plan: qualify richer native observations
 
 ## Scope
 
-Carry the remaining useful intent of [PR #2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR #3](https://github.com/pranaypratyush/boopstick/pull/3) onto the released Boopstick baseline. This draft is a planning deliverable, not an implementation, merge, package release or device-execution grant. Leave both original proposals open and linked until their disposition is explicitly approved.
+Carry the remaining useful intent of [PR #2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR #3](https://github.com/pranaypratyush/boopstick/pull/3) onto the released Boopstick baseline. Increment 1 implementation and local checks are approved. After local checks and independent implementation review pass, one APK build (maximum 1800 seconds) and one qualification invocation (maximum 1800 seconds, boot maximum 300 seconds, six acquisitions) are authorized. Reuse existing tools; no SDK installation, automatic rebuild/retry, retargeting or deadline extension. Preserve shared ADB and historical attempts; clean up only owned resources. This grant does not authorize merges, package releases or later increments. Leave both original proposals open and linked until their disposition is explicitly approved.
 
 Baseline: main `96d54567cb23efae4e6600e9a06ac7138418368f`, including released0.1.0 and its indexed [native findings](../docs/experiments/android.md). The [completed extraction plan](extract-boopstick.md) is unchanged. Extraction, scoped rights, publication and inventoried cutover are not new prerequisites. New or contradictory rights evidence still holds the affected material; only original/licensed neutral fixtures may be added.
 
