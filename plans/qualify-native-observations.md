@@ -1,7 +1,6 @@
 ---
 status: blocked
 awaits:
-  - Complete and independently review the authorized source-only runtime integration before any new native attempt
   - Obtain a fresh finite native grant; no build or native invocations remain authorized
   - Independently accept all six Increment1 acquisitions before later increments
 depends: []
@@ -108,7 +107,7 @@ The frozen PR6 implementation uses source commit `5d077b42c69eb9cc5f533d4baf18dc
 
 Later, separately authorized direct-route diagnostics produced a new build of that same frozen app source and spent two direct diagnostic invocations. They established no additional accepted acquisitions. The last invocation stopped on a console-observer deadline before controls; its exact handshake phase was not retained, and a separate outer bootstrap ownership failure remained. Neither is established transport loss or a diagnosed initiating cause. These diagnostic counts remain separate from the earlier qualification campaign's counts.
 
-Subsequent host-only work added phase evidence, fail-closed ownership provenance, cleanup isolation from throwing evidence sinks and scoped structured-report privacy/fidelity repairs. A fresh versioned runtime now composes the complete import closure, real denied-ADB lookup copies and manifests. Its initial host check exposed teardown reporting before child terminal observations; a bounded caller-ordering repair preserved all ownership errors/guards. Actual normal and cancellation wrapper checks then passed with clean owned teardown; unchanged prepared-input, refusal and privacy results were carried only through explicit matching pins. These are harmless Node-process checks, not Android collection or proof of the historical initiating causes. Independent final review remains required; no native/build grant, approval, spend marker or accepted acquisition was created.
+Subsequent host-only work added phase evidence, fail-closed ownership provenance, cleanup isolation from throwing evidence sinks and scoped structured-report privacy/fidelity repairs. A fresh versioned runtime now composes the complete import closure, real denied-ADB lookup copies and manifests. Its initial host check exposed teardown reporting before child terminal observations; a bounded caller-ordering repair preserved all ownership errors/guards. Actual normal and cancellation wrapper checks then passed with clean owned teardown; unchanged prepared-input, refusal and privacy results were carried only through explicit matching pins. These are harmless Node-process checks, not Android collection or proof of the historical initiating causes. Two independent final reviews found no actionable findings in this bounded source/host integration; parent acceptance is limited to that scope. No native/build grant, launch approval, spend marker or accepted acquisition was created.
 
 ### Original proposal mapping
 
