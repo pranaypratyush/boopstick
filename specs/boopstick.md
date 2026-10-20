@@ -66,7 +66,7 @@ Required captures from multiple providers cannot be combined across unrelated st
 
 ## Post-release native evidence quality
 
-The planning intent of [PR2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR3](https://github.com/pranaypratyush/boopstick/pull/3) is consolidated in the [blocked native qualification plan](../plans/qualify-native-observations.md). This documentation does not authorize implementation, runtime promotion, collection, release or support claims. The accepted0.1.0 window/dp handoff remains qualified within its original scope; PR6's separate two-subject implementation has only1/6 accepted native acquisitions. Repeated/text/media observations and the expanded matrix remain unqualified.
+The planning intent of [PR2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR3](https://github.com/pranaypratyush/boopstick/pull/3) is consolidated in the [blocked native qualification plan](../plans/qualify-native-observations.md). This documentation does not authorize implementation, runtime promotion, collection, release or support claims. The accepted 0.1.0 window/dp handoff remains qualified within its original scope; the expanded native matrix remains unqualified.
 
 ### Bind actual nodes without changing the application
 

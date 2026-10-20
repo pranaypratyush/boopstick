@@ -108,7 +108,7 @@ bun run check
 
 The `Core and package` GitHub Actions job runs these commands on pull requests and `main`, with pinned Node/Bun and read-only repository permissions. It does not start browsers or emulators, publish packages, or replace consumer qualification.
 
-The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/plans/extract-boopstick.md) retains detailed executed results, failures and remaining migration gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/specs/boopstick.md) defines the RNTL/browser/Android target. Separate proposal PRs are not silently adopted.
+The repository's [plan and qualification record](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/plans/extract-boopstick.md) retains detailed executed results, failures and remaining migration gates. The [specification](https://github.com/pranaypratyush/boopstick/blob/v0.1.0/specs/boopstick.md) defines the RNTL/browser/Android target. The [blocked post-release native plan](plans/qualify-native-observations.md) consolidates PR2/3's planning intent without qualifying its expanded implementation.
 
 For experiment questions, failed approaches, corrections and lessons, use the [experiment knowledge base](docs/experiments/README.md); its release-status note distinguishes completed 0.1.0 publication/onboarding from the plan's historical pending checklist.
 
