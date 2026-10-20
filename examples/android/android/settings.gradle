@@ -1,0 +1,13 @@
+// Derived from Community template 0.88.0; see ../THIRD_PARTY_NOTICES.md.
+pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
+    ex.autolinkLibrariesFromCommand(
+        [System.getenv("NODE_BINARY") ?: "node",
+         file("../node_modules/@react-native-community/cli/build/bin.js").absolutePath, "config"],
+        file(".."), files("../bun.lock", "../package.json")
+    )
+}
+rootProject.name = 'BoopstickSpecimen'
+include ':app'
+includeBuild('../node_modules/@react-native/gradle-plugin')

@@ -1,0 +1,42 @@
+{
+  "name": "boopstick",
+  "version": "0.1.0",
+  "description": "Pure comparison of explicit UI obligations against declared observations",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pranaypratyush/boopstick.git"
+  },
+  "homepage": "https://github.com/pranaypratyush/boopstick#readme",
+  "bugs": { "url": "https://github.com/pranaypratyush/boopstick/issues" },
+  "keywords": ["ui-testing", "layout", "react-native", "playwright", "agent-skills"],
+  "type": "module",
+  "engines": { "node": ">=24", "bun": ">=1.4.3" },
+  "packageManager": "bun@1.4.3",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": { "boopstick": "./dist/cli.js" },
+  "files": [
+    "dist/*.js",
+    "dist/*.d.ts",
+    "skills/boopstick/SKILL.md",
+    "skills/boopstick/references/contract.md",
+    "skills/boopstick/references/tools-and-evidence.md",
+    "docs/provenance.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.check.json",
+    "check": "bun tests/check.ts && node tests/package-check.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "7.0.2"
+  }
+}
