@@ -6,11 +6,12 @@ Use this index for experimental questions, failed approaches, corrections and bo
 
 - **Current implementation:** [Boopstick 0.1.0 design](design.md) — architecture, ownership, evidence boundaries and accepted platform limits.
 - **Why it exists and how it evolved:** [Original user intent and compact timeline](history.md).
-- **Questions, failures and decisions:** [Experiment matrix](#questions-and-decisions) — 28 stable knowledge records.
+- **Questions, failures and decisions:** [Experiment matrix](#questions-and-decisions) — 29 stable knowledge records.
+- **Post-release native work:** [Consolidated observation and evidence plan](../../plans/qualify-native-observations.md) — adopted PR2/3 intent, separately held implementation and qualification.
 
 ## Current status versus historical checkpoints
 
-**Public 0.1.0 is published and onboarded; PR1 and PR4 are merged and tag `v0.1.0` is published.** The approved inventoried caller/source/skill cutover completed within its qualified scope; remaining downstream review branches deliberately stayed unmerged. Publication does not imply downstream production rollout or broader platform support. PR2/3 remain unadopted proposals.
+**Public 0.1.0 is published and onboarded; PR1 and PR4 are merged and tag `v0.1.0` is published.** The approved inventoried caller/source/skill cutover completed within its qualified scope; remaining downstream review branches deliberately stayed unmerged. Publication does not imply downstream production rollout or broader platform support. The [blocked post-release native plan](../../plans/qualify-native-observations.md) records the adopted planning intent and remaining qualification limits.
 
 The [plan](../../plans/extract-boopstick.md) and [specification](../../specs/boopstick.md) preserve pre-release checkpoints, including pending release/onboarding/cutover wording and older incomplete native milestones. Read those as history, not current release blockers. This status correction summarizes the separately retained postrelease metadata reconciliation and owner acceptance, not a new registry query or runtime campaign. Public release identity: [v0.1.0](https://github.com/pranaypratyush/boopstick/releases/tag/v0.1.0).
 
@@ -42,6 +43,7 @@ IDs identify knowledge entries, not executable cases or acceptance scores. Keep 
 | AND-08 | Did every native acquisition and obligation complete? | Five actual acquisitions/15 cases accepted; selected green refused | [Count complete obligations, not green siblings](android.md#and-08--five-acquisitions-and-complete-ordinary-accounting) |
 | AND-09 | Can semantic proof substitute for lifecycle proof? | Separate independent reviews and terminal cleanup accepted | [Preserve timed observations and review boundaries](android.md#and-09--independent-lifecycle-and-semantic-checks) |
 | AND-10 | Do multiple subjects and a fresh matrix preserve independent relationships? | Implemented/build-verified; native incomplete at1/6 accepted acquisitions | [Bind expected mode/attempt; preserve pending bytes without promoting them](android.md#and-10--two-subject-relationships-and-an-incomplete-native-continuation) |
+| AND-11 | Did the diagnostic establish target loss or its own observer failure? | Native incomplete; named host-source repairs reviewed, runtime integration separate | [Keep observer cause, cleanup, privacy and evidence fidelity distinct](android.md#and-11--diagnose-the-observer-before-retrying-native-collection) |
 | GUIDE-01 | Which historical method evidence remains reusable? | Impact-based reuse; changed seams separately addressed | [Do not relabel historical execution](guidance.md#guide-01--preserve-historical-evidence-without-relabelling-it) |
 | GUIDE-02 | Can simulated consumers separate claims and missing evidence? | Six simulated decisions matched frozen dispositions | [Narrow valid results do not clear overall completion](guidance.md#guide-02--wave-1-separate-claims-acquisition-and-continuity) |
 | GUIDE-03 | Does normalization preserve intent or hide defects? | Three simulated reports distinguished valid mapping from concealment | [Judge transformations against the obligation](guidance.md#guide-03--wave-2-legitimate-normalization-versus-hidden-defects) |
@@ -59,4 +61,4 @@ IDs identify knowledge entries, not executable cases or acceptance scores. Keep 
 - **Private raw receipts** are retained outside this public tree. These newly authored sanitized summaries deliberately provide no machine paths, private source revisions, raw-artifact links or reconstructed receipt contents. Where only a public summary is available, the note says so; no public reproducibility of those private receipts is claimed.
 - **Bounded acceptance** covers only the recorded specimen, versions and evidence. Failures stay historical after correction; a later success does not explain an unresolved cause or certify older mismatched artifacts.
 
-No experiments were rerun merely to organize this knowledge base. AND-10 summarizes separately authorized postrelease implementation and execution; the other entries preserve their historical evidence. These notes grant no execution, publication or consumer-adoption authority.
+No experiments were rerun merely to organize this knowledge base. AND-10/11 summarize separately authorized postrelease qualification, diagnostics and host-only repairs; other entries preserve their historical evidence. These notes grant no execution, publication or consumer-adoption authority.

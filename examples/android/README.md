@@ -18,6 +18,16 @@ Preserved failures: initial build staging exported an empty Git archive from a n
 
 Immediate cleanup recorded an offline serial and failed target check; the owned emulator then exited and all recorded owned ports refused connections. Later terminal readback found no devices, owned listeners or recorded processes; the existing shared ADB listener remained. Sampled server/emulator identities around loss do not diagnose its initiating cause. **Both build grants and both native grants are spent; no further campaign is authorized.** Later increments remain held. See [AND-10](../../docs/experiments/android.md#and-10--two-subject-relationships-and-an-incomplete-native-continuation).
 
+## Subsequent diagnostics and host-only repairs
+
+After the qualification attempts above, a separately authorized diagnostic build used the same frozen app source and produced APK SHA256 `45b9109e9efafd96a682fdd302fe7d0c901dda23d38f64d160ea7738b1957e44`. That diagnostic sequence spent one build and two direct-route native invocations; it did not establish another control, boot or accepted acquisition. Its counters are separate from the original qualification attempts, not replacements or refunds.
+
+The last direct-route invocation stopped on a console-observer deadline before controls. The boot ceiling still had time available, but the exact greeting/auth/name phase was not retained. A separate outer bootstrap ownership error remained despite a later valid identity sample. Neither failure establishes the initiating transport cause; clean inner teardown does not erase the outer failure or prove complete host restoration.
+
+Host-only follow-up added bounded console-phase metadata and paired ownership-failure observations without weakening deadlines or guards. The actual harmless bootstrap seam did not reproduce the historical token failure, so no propagation fix or benign-race waiver was justified. Cleanup was isolated from throwing evidence sinks, and named structured-report/control sites received privacy/fidelity repairs with independent host checks and source review. Those results are not native authentication, full-disk recovery, arbitrary-stream privacy or successful Android collection.
+
+The current source-only continuation stages those accepted repairs into a fresh versioned diagnostic runtime, including its real import closure, denied-ADB lookup copies and manifests. That preparation is separate from the public qualification recipe below and is not a portable released adapter. No new native/build grant, approval or spend is created; native acceptance remains **1/6**, with the full 60-case matrix and later increments held. See [AND-11](../../docs/experiments/android.md#and-11--diagnose-the-observer-before-retrying-native-collection).
+
 ## Accepted native result
 
 This section describes the historical single-subject0.1.0 qualification, source snapshot `f286a9d`, not the current Increment1 source. Its five acquisitions/15 ordinary cases were independently verified and parent accepted.
