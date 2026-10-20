@@ -44,7 +44,7 @@ The ordinary RNTL/Jest recipe, Vitest accounting, real-browser specimen and real
 |---|---|---|---|
 | **RNTL + Jest** | RNTL rendering, queries, user events and behavior/state matchers; Jest cases and lifecycle | A tested recipe for calling the pure comparator and its small report/assertion seam alongside RNTL tests; explicit synthetic policy/geometry fixtures where useful | No actual native layout, text wrapping, clipping, painted visibility or touch-region evidence from a JS test tree or supplied layout event |
 | **Real browser + Playwright Test** | Browser/page lifecycle, navigation, input actions, locators, readiness and artifacts | A qualified browser observation path plus independently reported comparator cases at real browser checkpoints | A mobile viewport is not a native app; a rectangle or `isVisible` result does not establish unobscured, tappable content |
-| **Real native app on an Android emulator** | Existing app/story setup and interaction driver; initially Maestro, with authorized ADB and/or in-app RN observation | A qualified native capture handoff to ordinary TS cases; layout/text and accessibility evidence remain distinct | No DOM measurements; accessibility bounds are not RN layout or hit regions; a screenshot or automation success alone does not prove all layout obligations |
+| **Real native app on an Android emulator** | Consumer-owned app/story setup and its existing native driver, with authorized ADB and/or in-app RN observation; no mandatory driver migration | A qualified native capture handoff to ordinary TS cases; layout/text and accessibility evidence remain distinct | No DOM measurements; accessibility bounds are not RN layout or hit regions; a screenshot or automation success alone does not prove all layout obligations |
 
 ### RNTL: useful compatibility, not a fake layout engine
 
@@ -63,6 +63,48 @@ Each collector must establish subject identity, coordinate space, units, origin,
 The accepted incoming candidate admits direct DOM border-box observations through `web-dom-border-box` under exact contract `"3.1"`; the earlier no-browser-provider snapshot is obsolete. Direct DOM acquisition must not be labelled as RN measurement or synthetic evidence. Provider admission and upstream browser evidence alone do not qualify a collector; the neutral browser trial has its own approved scope and executed independent qualification, limited as stated above. Android and broader platforms still need their own approved collection and executed qualification. Initial native qualification is Android; iOS support requires its own later scope, hardware and executed evidence, and is not an implied release claim.
 
 Required captures from multiple providers cannot be combined across unrelated states/attempts. Missing observations establish absence only when the required scope was completely and appropriately enumerated. Overlay/occlusion and interaction checks stay distinct from geometry; reuse existing actionability checks and do not invent a visibility certificate.
+
+## Post-release native evidence quality
+
+The planning intent of [PR2](https://github.com/pranaypratyush/boopstick/pull/2) and [PR3](https://github.com/pranaypratyush/boopstick/pull/3) is consolidated in the [blocked native qualification plan](../plans/qualify-native-observations.md). This documentation does not authorize implementation, runtime promotion, collection, release or support claims. The accepted 0.1.0 window/dp handoff remains qualified within its original scope; the expanded native matrix remains unqualified.
+
+### Bind actual nodes without changing the application
+
+Reuse actual root/body/media/action nodes with stable logical identities and instance keys for repeated subjects. No first-label/longest-text heuristics, copied component JSX, private Fabric/Fiber APIs or global flattening changes. Keep observation outside production entrypoints; disabling it preserves ordinary styling, rendering and interaction.
+
+Use public RN observations only where required. Existing `measureInWindow` geometry can serve multiple subjects without a new callback provider. `onLayout` values retain parent identity and parent-relative units; any common-space conversion needs qualification. `onTextLayout` line arrays are not glyph ink, UTF-16 coverage, visible-line counts, ellipsis, clipping or a general text-fit certificate. Provider admission alone does not qualify acquisition.
+
+### Preserve independent expectations and measurement meaning
+
+Freeze reference/requirement, scenario bindings, legitimate variation and justified tolerances before observing the candidate. Prefer independently required relationships where reflow is allowed: a gap can survive a wrapping title although its bottom moves. Keep absolute placement checks where independently required. Do not copy candidate measurements into expectations, widen tolerances after failure or approve baselines automatically.
+
+Retain original floats, provider, subject/parent identities, units, origins, applicable density/font scale and checkpoint/interval. Perform only justified conversions into a qualified common space. Do not recenter away displacement, infer logical scope/absence from overlap or physical aliases, or round fractional undersizing into a pass. Missing siblings remain unavailable facts, not zero rectangles.
+
+### Qualify collection, not a last-known sample
+
+The consumer's runner/collector establishes scenario-specific readiness for relevant fonts, images, layout, transitions, keyboard state and animations. Collection ends within an approved bound with qualified evidence or an explicit limitation/setup failure. Two unchanged samples or network idleness alone cannot establish readiness or an atomic layout/GPU frame.
+
+Withhold affected evidence through existing contract semantics where representable; otherwise refuse collection or fail setup. Preserve unrelated eligible outcomes only where that contract permits; global identity/admission/coherence blockers remain global. Do not invent readiness wire fields or a generic stabilizer.
+
+Retain whole-screen compositor originals beside structured facts and actual native action → observed-state checkpoints; directly invoking a callback is not native interaction. Canvas redraws, accessibility bounds, hit regions, screenshots and layout observations remain distinct. App inset consumption cannot be inferred from system policy rectangles.
+
+Bind raw attempts, requests and outcomes to actual source/build, scenario, environment and collection attempt. A manually fetched bundle at the same URL does not attest the response executed by the app. Missing required identity refuses the affected claim instead of borrowing another attempt's label/hash. Offline replay proves deterministic evaluation, not fresh collection.
+
+### Demonstrate detection and limits
+
+The plan retains three controls, permitted reflow, wrong gap/repair, repeated/text/media/disclosure variants, square-media and one-line-body defects/restoration, fractional undersizing, missing/wrong-kind facts, readiness exhaustion, displaced composition/logical scope and a covered action. Keep expectations fixed and distinguish measured mismatch, missing/unsupported evidence and admission/setup failure. Retain screenshot counterexamples when numerical rules pass despite a broader visible defect.
+
+Native representability must precede a fractional-boundary claim; a labelled synthetic check cannot substitute. A covered action needs separate behavior/actionability evidence. Full hit-region containment, text ranges/ellipsis/clipping, painted extents, occlusion and atomic capture remain unsupported unless adequate provider evidence is separately qualified. Geometry or a complete accessibility label does not approve the whole UI.
+
+Explain outcomes through the existing canonical report and runner artifacts: assertions/subjects, available source/reference anchors, expected/measured values, deviation and evidence/refusal reasons. Do not compute a second verdict, invent measurements for `not_measured` or relabel admission errors as mismatches. Exact3.1 request/capture/report versions and closed wire fields remain unchanged; new normative `extensions` meanings require an explicit amendment.
+
+### Keep integration optional
+
+Retain the existing app/story, driver and authorized ADB compositor capture. Maestro is an optional driver, not a consumer prerequisite. Agent-device remains optional and not an officially qualified adapter; Harness is not the default structural collector and needs a separate concrete native component-test justification. Public RN callbacks do not require Harness.
+
+A bounded external evaluation of agent-device0.21.24, React Native Harness core/Android/UI1.5.0 and Maestro2.11.0 motivated PR2's retain-the-probes decision; it was not Boopstick compatibility qualification. Accessibility/pixel checks left structural/text gaps, Harness Canvas output was not compositor evidence, and Maestro still required custom ratio/text/binding work. No private fixtures/scripts/screenshots/receipts or proprietary implementation are imported.
+
+No new comparator, runner, DSL, dashboard, universal scene graph, design exporter, `.pen` importer, Skia/CanvasKit dependency or screenshot-to-geometry fallback is added. Existing RNTL/browser/native qualifications stay intact; RNTL remains synthetic and RN Web remains browser evidence. Android additions imply neither iOS nor physical-device support.
 
 ## Test ergonomics and complete CI
 

@@ -7,10 +7,11 @@ Use this index for experimental questions, failed approaches, corrections and bo
 - **Current implementation:** [Boopstick 0.1.0 design](design.md) — architecture, ownership, evidence boundaries and accepted platform limits.
 - **Why it exists and how it evolved:** [Original user intent and compact timeline](history.md).
 - **Questions, failures and decisions:** [Experiment matrix](#questions-and-decisions) — the existing 27 stable knowledge records.
+- **Post-release native work:** [Consolidated observation and evidence plan](../../plans/qualify-native-observations.md) — adopted PR2/3 intent, separately held implementation and qualification.
 
 ## Current status versus historical checkpoints
 
-**Public 0.1.0 is published and onboarded; PR1 and PR4 are merged and tag `v0.1.0` is published.** The approved inventoried caller/source/skill cutover completed within its qualified scope; remaining downstream review branches deliberately stayed unmerged. Publication does not imply downstream production rollout or broader platform support. PR2/3 remain unadopted proposals.
+**Public 0.1.0 is published and onboarded; PR1 and PR4 are merged and tag `v0.1.0` is published.** The approved inventoried caller/source/skill cutover completed within its qualified scope; remaining downstream review branches deliberately stayed unmerged. Publication does not imply downstream production rollout or broader platform support. The [blocked post-release native plan](../../plans/qualify-native-observations.md) records the adopted planning intent and remaining qualification limits.
 
 The [plan](../../plans/extract-boopstick.md) and [specification](../../specs/boopstick.md) preserve pre-release checkpoints, including pending release/onboarding/cutover wording and older incomplete native milestones. Read those as history, not current release blockers. This status correction summarizes the separately retained postrelease metadata reconciliation and owner acceptance, not a new registry query or runtime campaign. Public release identity: [v0.1.0](https://github.com/pranaypratyush/boopstick/releases/tag/v0.1.0).
 
