@@ -1,6 +1,13 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {Dimensions, I18nManager, Linking, Pressable, Text, View, useWindowDimensions} from 'react-native';
 
+const MODES = ['control-1', 'control-2', 'control-3', 'narrow', 'defect', 'repair'];
+// Frozen authored geometry for this static specimen; host scenario owns the policy copy.
+const BODY_WIDTH = 280;
+const NARROW_BODY_WIDTH = 180;
+const CORRECT_GAP = 16;
+const DEFECT_EXTRA_GAP = 8;
+
 function parseInvocation(url) {
   const match = typeof url === 'string' && url.length <= 1024 &&
     /^boopstick:\/\/capture\/?\?([^#]+)$/.exec(url);
@@ -17,8 +24,7 @@ function parseInvocation(url) {
   const attemptId = query.get('attemptId');
   const mode = query.get('mode');
   if (!/^\d{1,5}$/.test(port) || Number(port) < 1 || Number(port) > 65535 ||
-      !/^[A-Za-z0-9_-]{1,128}$/.test(attemptId) ||
-      !['valid', 'defect', 'repair', 'missing', 'absent'].includes(mode)) {
+      !/^[A-Za-z0-9_-]{1,128}$/.test(attemptId) || !MODES.includes(mode)) {
     throw new Error('invalid-invocation');
   }
   return {port: Number(port), attemptId, mode};
@@ -68,10 +74,12 @@ export default function App() {
   const [enabled, setEnabled] = useState(false);
   const [invocation, setInvocation] = useState(null);
   const [rootReady, setRootReady] = useState(false);
-  const [subjectReady, setSubjectReady] = useState(false);
+  const [bodyReady, setBodyReady] = useState(null);
+  const [actionReady, setActionReady] = useState(null);
   const [phase, setPhase] = useState('idle');
   const rootRef = useRef(null);
-  const subjectRef = useRef(null);
+  const bodyRef = useRef(null);
+  const actionRef = useRef(null);
   const generation = useRef(0);
   const committed = useRef(null);
   const attempted = useRef(false);
@@ -80,9 +88,17 @@ export default function App() {
   const window = useWindowDimensions();
   const direction = I18nManager.isRTL;
 
+  // The real toggle applies each variant; URL selection alone does not apply it.
+  const mode = invocation?.mode;
+  const variantBodyWidth = mode === 'narrow' && enabled ? NARROW_BODY_WIDTH : BODY_WIDTH;
+  const actionGap = mode === 'defect' && enabled ? CORRECT_GAP + DEFECT_EXTRA_GAP :
+    mode === 'repair' && !enabled ? CORRECT_GAP + DEFECT_EXTRA_GAP : CORRECT_GAP;
+  const bodyLayoutKey = `${invocation?.attemptId ?? 'unconfigured'}:${variantBodyWidth}`;
+  const actionLayoutKey = `${bodyLayoutKey}:${actionGap}`;
+
   useLayoutEffect(() => {
     generation.current += 1;
-    committed.current = {enabled, invocation};
+    committed.current = {enabled, invocation, bodyLayoutKey, actionLayoutKey};
   }, [enabled, invocation, window.width, window.height, window.scale, window.fontScale, direction]);
 
   useEffect(() => {
@@ -104,8 +120,8 @@ export default function App() {
     };
   }, []);
 
-  const absent = invocation?.mode === 'absent';
-  const ready = Boolean(invocation && enabled && rootReady && (absent || subjectReady));
+  const ready = Boolean(invocation && enabled && rootReady &&
+    bodyReady === bodyLayoutKey && actionReady === actionLayoutKey);
   const status = phase !== 'idle' ? phase : !invocation ? 'waiting-invocation' :
     !enabled ? 'waiting-toggle' : ready ? 'ready' : 'waiting-layout';
 
@@ -123,44 +139,46 @@ export default function App() {
       const generationBefore = generation.current;
       const environmentBefore = readEnvironment();
       const rootNode = rootRef.current;
-      const subjectNode = subjectRef.current;
+      const bodyNode = bodyRef.current;
+      const actionNode = actionRef.current;
       const errors = [];
-      const withheld = invocation.mode === 'missing';
-      if (withheld) errors.push('subject-acquisition-withheld');
-      const [root, subject] = await Promise.all([
+      const [root, body, action] = await Promise.all([
         measure(rootNode, 'root', errors),
-        absent || withheld ? Promise.resolve(null) : measure(subjectNode, 'subject', errors),
+        measure(bodyNode, 'body-subject', errors),
+        measure(actionNode, 'action-subject', errors),
       ]);
       if (!alive.current) return;
       if (!committed.current?.enabled) throw new Error('checkpoint-changed');
       const environmentAfter = readEnvironment();
       const generationAfter = generation.current;
       const endedAt = Date.now();
-      const subjectMounted = subjectRef.current !== null;
       const unchanged = committed.current === stateBefore &&
         generationBefore === generationAfter && rootRef.current === rootNode &&
-        subjectRef.current === subjectNode;
+        bodyRef.current === bodyNode && actionRef.current === actionNode;
       const sameEnvironment = JSON.stringify(environmentBefore) === JSON.stringify(environmentAfter);
       if (!unchanged) errors.push('state-layout-or-ref-changed');
       if (!sameEnvironment) errors.push('environment-changed');
-      const steady = unchanged && sameEnvironment && root !== null &&
-        (absent ? !subjectMounted : subjectMounted && (withheld || subject !== null)) &&
-        errors.every(reason => reason === 'subject-acquisition-withheld');
-      // Qualified only for this static fixture; callbacks are not a native transaction.
+      // Steady records stable state/generation/ref/environment only; individual callback
+      // failures stay honest in errors and their rectangles remain null.
+      const steady = unchanged && sameEnvironment;
+      const subjects = [
+        {key: 'body-subject', mounted: bodyNode !== null, rect: body},
+        {key: 'action-subject', mounted: actionNode !== null, rect: action},
+      ];
       const payload = {
         attemptId: invocation.attemptId, mode: invocation.mode,
         checkpoint: 'after-toggle', state: 'on', startedAt, endedAt,
         generationBefore, generationAfter, environmentBefore, environmentAfter,
-        root, subject, subjectMounted, steady, errors,
+        root, subjects, steady, errors,
       };
-      const body = JSON.stringify(payload);
-      if (body.length > 64 * 1024) throw new Error('payload-too-large');
+      const encoded = JSON.stringify(payload);
+      if (encoded.length > 64 * 1024) throw new Error('payload-too-large');
       const controller = new AbortController();
       transport.current = controller;
       timeout = setTimeout(() => controller.abort(), 5000);
       const response = await fetch(
         `http://10.0.2.2:${invocation.port}/capture/${invocation.attemptId}`,
-        {method: 'POST', headers: {'Content-Type': 'application/json'}, body, signal: controller.signal},
+        {method: 'POST', headers: {'Content-Type': 'application/json'}, body: encoded, signal: controller.signal},
       );
       if (!response.ok) throw new Error('export-rejected');
       if (alive.current) setPhase('exported');
@@ -172,21 +190,45 @@ export default function App() {
     }
   }
 
+
   return (
     <View ref={rootRef} testID="specimen-root" collapsable={false}
       onLayout={() => { generation.current += 1; setRootReady(true); }}
-      style={{flex: 1, padding: 24, gap: 16, backgroundColor: '#ffffff'}}>
+      style={{flex: 1, padding: 24, backgroundColor: '#ffffff'}}>
       <Text style={{color: '#111111', fontSize: 20}}>Neutral Android specimen</Text>
-      <Text style={{color: '#111111'}}>Geometry subject</Text>
-      {!absent && <View ref={subjectRef} testID="geometry-subject" collapsable={false}
-        onLayout={() => { generation.current += 1; setSubjectReady(true); }}
-        style={{width: 200.5, height: invocation?.mode === 'defect' ? 47 : 48, backgroundColor: '#2563eb'}} />}
-      <Pressable testID="toggle-button" accessibilityRole="button"
-        accessibilityLabel="Toggle state" disabled={attempted.current}
-        onPress={() => { if (!attempted.current) setEnabled(value => !value); }}
-        style={{alignSelf: 'flex-start', padding: 16, backgroundColor: '#e5e7eb'}}>
-        <Text style={{color: '#111111'}}>Toggle state</Text>
-      </Pressable>
+      <View key={bodyLayoutKey} ref={bodyRef} testID="body-subject" collapsable={false}
+        onLayout={() => {
+          generation.current += 1;
+          if (committed.current?.bodyLayoutKey === bodyLayoutKey) setBodyReady(bodyLayoutKey);
+        }}
+        style={{width: variantBodyWidth}}>
+        <Text style={{color: '#111111', fontSize: 16, lineHeight: 22}}>
+          A quiet path crosses the garden beside a stone wall. Small birds gather near
+          the gate while the trees shade a wooden bench. The same fixed words remain
+          visible when this body becomes narrower and the text naturally wraps.
+        </Text>
+      </View>
+      {/* Layout keys require fresh variant-node layout, not a queued pre-toggle event.
+          Unchanged controls retain their nodes and need no extra layout event.
+          Measured container geometry only, not a hit-testing claim; button fills it. */}
+      <View key={actionLayoutKey} ref={actionRef} testID="action-subject" collapsable={false}
+        onLayout={() => {
+          generation.current += 1;
+          if (committed.current?.actionLayoutKey === actionLayoutKey) setActionReady(actionLayoutKey);
+        }}
+        style={{alignSelf: 'flex-start', marginTop: actionGap, width: 144, height: 48}}>
+        <Pressable testID="toggle-button" accessibilityRole="button"
+          accessibilityLabel="Toggle state" disabled={attempted.current}
+          onPress={() => {
+            if (attempted.current) return;
+            if (mode === 'narrow') setBodyReady(null);
+            if (['narrow', 'defect', 'repair'].includes(mode)) setActionReady(null);
+            setEnabled(value => !value);
+          }}
+          style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e5e7eb'}}>
+          <Text style={{color: '#111111'}}>Toggle state</Text>
+        </Pressable>
+      </View>
       <Text testID="state-label" style={{color: '#111111'}}>
         State: {enabled ? 'on' : 'off'}
       </Text>
@@ -196,7 +238,7 @@ export default function App() {
       <Pressable testID="capture-button" accessibilityRole="button"
         accessibilityLabel="Capture measurements" disabled={status !== 'ready'}
         onPress={capture}
-        style={{alignSelf: 'flex-start', padding: 16, backgroundColor: '#e5e7eb'}}>
+        style={{alignSelf: 'flex-start', marginTop: 16, padding: 16, backgroundColor: '#e5e7eb'}}>
         <Text style={{color: '#111111'}}>Capture measurements</Text>
       </Pressable>
       <Text testID="capture-status" style={{color: '#111111'}}>Capture: {status}</Text>

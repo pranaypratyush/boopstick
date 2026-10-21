@@ -1,7 +1,6 @@
 ---
 status: blocked
 awaits:
-  - Separately authorize and independently review runtime integration before any new native attempt
   - Obtain a fresh finite native grant; no build or native invocations remain authorized
   - Independently accept all six Increment1 acquisitions before later increments
 depends: []
@@ -101,6 +100,16 @@ All boxes below remain open for the expanded matrix. PR6's reviewed source/host 
 - **Scope growth:** extend only an accepted seam; contract changes, new platforms or driver integrations require separate decisions.
 
 ## Notes
+
+### Increment1 retained implementation and diagnostic evidence
+
+The frozen PR6 implementation uses source commit `5d077b42c69eb9cc5f533d4baf18dc5b047151e7`, tree `37ae5e24b1ab28565c2421846d51cce7905911eb`. Receiver/collector host checks passed6/6 on each pinned Node/Bun runtime, and one actual control retained eight passing comparator outcomes. These support the bounded multi-subject/ingress seam and labelled refusal controls, not the expanded validation checklist. The [example](../examples/android/README.md#increment1--partial-native-result-not-ready-for-full-acceptance) and [AND-10](../docs/experiments/android.md#and-10--two-subject-relationships-and-an-incomplete-native-continuation) preserve the accepted control, unqualified second export, selected-feedback refusal, canonical replays and spent original/continuation attempts.
+
+A first separately authorized direct-route diagnostic sequence produced a new build of that same frozen app source and spent two direct diagnostic invocations. It established no additional accepted acquisitions. The second invocation stopped on a console-observer deadline before controls; its exact handshake phase was not retained, and a separate outer bootstrap ownership failure remained. Neither is established transport loss or a diagnosed initiating cause. These diagnostic counts remain separate from the earlier qualification campaign's counts.
+
+Subsequent host-only work added phase evidence, fail-closed ownership provenance, cleanup isolation from throwing evidence sinks and scoped structured-report privacy/fidelity repairs. A fresh versioned runtime now composes the complete import closure, real denied-ADB lookup copies and manifests. Its initial host check exposed teardown reporting before child terminal observations; a bounded caller-ordering repair preserved all ownership errors/guards. Actual normal and cancellation wrapper checks then passed with clean owned teardown; unchanged prepared-input, refusal and privacy results were carried only through explicit matching pins. These are harmless Node-process checks, not Android collection or proof of the historical initiating causes. Two independent final reviews found no actionable findings in this bounded source/host integration; parent acceptance is limited to that scope. No native/build grant, launch approval, spend marker or accepted acquisition was created.
+
+The separately authorized third direct diagnostic established no new acquisition. The [Android example](../examples/android/README.md#subsequent-diagnostics-and-host-only-repairs) owns its retained result and cumulative spend. No native/build invocation remains authorized; acceptance remains1/6 and full60 unqualified.
 
 ### Original proposal mapping
 
